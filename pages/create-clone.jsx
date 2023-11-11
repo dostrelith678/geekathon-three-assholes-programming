@@ -6,9 +6,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 const clonePage = () => {
-
+    const router = useRouter();
     const [formData, setFormData] = useState({
-        pp:null,
+        pp:[],
         username: '',
         description: '',
         firstname:'',
@@ -54,18 +54,78 @@ const clonePage = () => {
       }
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const { name, files } = e.target;
-        setFormData({
-            ...formData,
+        // Vérifier si le champ est pp ou selfies
+        if (name === 'pp' || name === 'selfies') {
+          if (files && files.length > 0 && files[0]) {
+            // Assurer que files[0] est un objet Blob
+            const fileBlob = new Blob([files[0]], { type: files[0].type });
+      
+            // Convertir l'image en base64
+            const base64Image = await convertImageToBase64(fileBlob);
+      
+            setFormData((prevFormData) => ({
+              ...prevFormData,
+              [name]: base64Image,
+            }));
+          } else {
+            console.error('Aucun fichier sélectionné.');
+          }
+        } else {
+          // Pour les autres champs de fichier, traiter normalement
+          setFormData((prevFormData) => ({
+            ...prevFormData,
             [name]: files[0],
-        });
+          }));
+        }
     };
 
-    const handleSubmit = (e) => {
+    const convertImageToBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form data:', formData);
-        // Ajoutez la logique d'envoi du formulaire ici
+
+        try {
+          // Convertir le tableau de selfies en tableau de base64
+          // const base64PP = await convertImageToBase64(formData.pp);
+          // const base64Selfies = await Promise.all(
+          //   formData.selfies.map((selfie) => convertImageToBase64(selfie))
+          // );
+    
+          // Envoyer les données du formulaire à votre backend
+          const response = await fetch('http://localhost:3008/create-clone', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ...formData,
+            }),
+          });
+    
+          if (response.ok) {
+            // Le serveur a renvoyé une réponse 200 OK
+            const data = await response.json();
+            console.log(data);
+            router.push('/thanks');
+          } else {
+            // Le serveur a renvoyé une erreur
+            const errorData = await response.json();
+            console.error('Erreur lors de la création du clone:', errorData.error);
+          }
+        } catch (error) {
+          console.error('Erreur lors de l\'envoi du formulaire:', error);
+        }
+
     };
 
   return (
@@ -99,12 +159,12 @@ const clonePage = () => {
               onChange={handleChange}
             />
 
-            <label htmlFor="fistname">First Name:</label>
+            <label htmlFor="firstname">First Name:</label>
             <input
               type="text"
-              id="fistname"
-              name="fistname"
-              value={formData.fistname}
+              id="firstname"
+              name="firstname"
+              value={formData.firstname}
               onChange={handleChange}
             />
 

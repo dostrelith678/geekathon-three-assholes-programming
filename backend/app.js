@@ -134,9 +134,10 @@ app.post('/create-clone', async (req, res) => {
 
 
         // Validate request data (you can customize this based on your requirements)
-        if (!username || !sex) {
-            return res.status(400).json({ error: 'Invalid request body' });
-        }
+        // if (!username || !sex) {
+        //     return res.status(400).json({ error: 'Invalid request body' });
+        // }
+        
         // Generate a unique clone ID for the AI clone
         const cloneId = db.ref('aiClones').push().key;
 
