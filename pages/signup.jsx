@@ -7,11 +7,11 @@ const SignupPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [checkboxChecked, setCheckboxChecked] = useState(false);
-  
+
     const handleSubmit = async (e) => {
       e.preventDefault();
-  
-      try {  
+
+      try {
         // Envoyez les données du formulaire à votre backend
         const response = await fetch('http://localhost:3008/signup', {
           method: 'POST',

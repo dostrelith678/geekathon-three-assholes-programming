@@ -1,6 +1,6 @@
 // 'use client'; // Remove this line, it's not necessary
 import React from 'react';
-import styles from '../styles/login.module.css';
+import styles from '../styles/not-global.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
