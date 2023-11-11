@@ -1,29 +1,23 @@
-/* login.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden; /* Prevent scrolling */
 }
 
 .App {
   display: flex;
-  flex-direction: column; /* Change to column layout */
+  flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 100vw;
-  height: 100vh; /* Fill the entire viewport height */
+  height: 100vh;
   background-color: rgba(133, 44, 207, 1);
 }
 
 .image-section {
   flex: 1;
   background: url('../public/group.png') center/cover;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin: 10px;
 }
 
 .top-section {
@@ -36,8 +30,6 @@
   color: rgba(133, 44, 207, 1);
 }
 
-
-
 .login-section {
   display: flex;
   flex: 1;
@@ -45,19 +37,15 @@
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: black; /* Darker pink color on hover */
-  height: 100%; /* Fill the entire height of the .App container */
+  background-color: black;
+  height: 100%;
 }
 
 .box {
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center the content horizontally within .box */
   margin-bottom: 2vh;
-}
-
-.heading {
-  color: #fff; /* Change to white */
-  margin-bottom: 20px;
 }
 
 .form {
@@ -66,35 +54,71 @@
   width: 100%;
 }
 
-.label {
-  color: white;
-  margin-bottom: 8px;
-}
-
 .input {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  outline: none;
+  width: 153px;
+  height: 40px;
+  border: 2px solid rgba(133, 44, 207, 1);
+  border-radius: 6px;
+  background-color: black;
+  color: white;
 }
 
-.button-container {
-  display: flex;
-  gap: 10px; /* Adjust the gap between buttons */
+.input::placeholder {
+  text-align: center;
+  color: rgba(133, 44, 207, 1);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .button {
-  padding: 12px;
-  background-color: #ff69b4; /* Pink color */
-  color: #fff;
-  border: none;
-  border-radius: 10px;
+  width: 153px;
+  height: 40px;
+  border: 2px solid rgba(133, 44, 207, 1);
+  border-radius: 6px;
+  background-color: black;
+  color: rgba(133, 44, 207, 1);
   cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s; /* Add transition for smooth hover effect */
+  transition: background-color 0.3s;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Inter', serif;
 }
 
 .button:hover {
-  background-color: #ff1493; /* Darker pink color on hover */
+  background-color: rgba(133, 44, 207, 1);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 6px;
 }
-/* login.module.css */
+
+.forgot-password {
+  text-align: center;
+  background-color: black;
+  padding: 5%;
+}
+
+.forgot-password a {
+  text-decoration: none; /* Remove underline */
+  color: rgba(133, 44, 207, 1);
+  cursor: pointer;
+  text-transform: lowercase;
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 1px;
+}
+
