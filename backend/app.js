@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const firebase = require('firebase');
 const admin = require("firebase-admin");
+const cors = require('cors');
 const serviceAccount = require("./serviceAccountKey.json");
 const paypal = require('paypal-rest-sdk');  // Add PayPal library
 
@@ -19,8 +20,9 @@ const firebaseConfig = {
     credential: admin.credential.cert(serviceAccount)
 };
 
+
 firebase.initializeApp(firebaseConfig);
-const db = firebase.database()
+const db = firebase.database();
 
 // Initialize PayPal
 paypal.configure({
@@ -29,10 +31,11 @@ paypal.configure({
 
 // Create Express app
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3008;
 
 // Middleware
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes
 
@@ -102,6 +105,7 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 
 // Create an AI clone
 app.post('/create-clone', (req, res) => {
