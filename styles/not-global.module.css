@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+/* Login and Register */
 .body {
   align-items: center;
 }
@@ -8,7 +9,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: auto;
   width: 100vw;
   height: 100vh;
   background-color: rgba(133, 44, 207, 1);
@@ -25,7 +26,7 @@
   background-color: black;
 }
 
-.top-section h1{
+.top-section h1 {
   font-weight: 900;
   color: rgba(133, 44, 207, 1);
 }
@@ -44,7 +45,8 @@
 .box {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the content horizontally within .box */
+  align-items: center;
+  /* Center the content horizontally within .box */
   margin-bottom: 20px;
   color: white;
 }
@@ -93,18 +95,6 @@
   font-family: 'Inter', serif;
 }
 
-/*.button:hover {*/
-/*  background-color: rgba(133, 44, 207, 1);*/
-/*  color: white;*/
-/*  font-weight: 600;*/
-/*  font-size: 13px;*/
-/*  line-height: 1.4;*/
-/*  letter-spacing: 1px;*/
-/*  text-decoration: none;*/
-/*  text-transform: uppercase;*/
-/*  border-radius: 6px;*/
-/*}*/
-
 .button2 {
   width: 153px;
   height: 40px;
@@ -129,7 +119,8 @@
 }
 
 .forgot-password a {
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
+  /* Remove underline */
   color: rgba(133, 44, 207, 1);
   cursor: pointer;
   text-transform: lowercase;
@@ -152,7 +143,6 @@
   height: 24px;
   color: white;
   margin-left: 120px;
-
 }
 
 .slider {
@@ -179,22 +169,114 @@
   transition: 0.4s;
 }
 
-input:checked + .slider{
-  background-color: rgba(133, 44, 207, 1);;
+input:checked + .slider {
+  background-color: rgba(133, 44, 207, 1);
 }
-input:checked + .slider::before{
+
+input:checked + .slider::before {
   transform: translateX(16px);
 }
 
 .sliderText {
   position: absolute;
   display: inline-block;
-  margin-right: 60px; /* Adjust this value to position the text */
-  line-height: 24px; /* Align text vertically with the slider */
+  margin-right: 60px;
+  /* Adjust this value to position the text */
+  line-height: 24px;
+  /* Align text vertically with the slider */
   color: rgba(133, 44, 207, 1);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 1px;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+/* Create Clone */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+}
+
+.profile-image {
+  width: 150px;
+  /* Adjust the width and height as needed for your round image */
+  height: 150px;
+  border-radius: 50%;
+  /* This will make the image round */
+  margin-bottom: 10px;
+  /* Adjust margin as needed */
+  margin-top: 20px;
+}
+
+.twitter-handle {
+  font-size: 12px;
+  color: white;
+}
+
+.top-section2 {
+  text-align: center;
+  background-color: rgba(133, 44, 207, 1);
+  color: black;
+  font-weight: 900;
+}
+
+.input2 {
+  width: 300px;
+  height: 60px;
+  border: 2px solid rgba(133, 44, 207, 1);
+  border-radius: 6px;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  /* Add padding to create space for the placeholder text */
+  box-sizing: border-box;
+  /* Include padding in the width and height calculations */
+  position: relative;
+}
+
+.input2::placeholder {
+  color: rgba(133, 44, 207, 1);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  white-space: normal; /* Allow text to wrap */
+  text-align: justify;
+}
+
+.select {
+  width: 300px;
+  height: 60px;
+  border: 2px solid rgba(133, 44, 207, 1);
+  border-radius: 6px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  /* Add padding to create space for the selected option text */
+  box-sizing: border-box;
+  /* Include padding in the width and height calculations */
+  appearance: none;
+  /* Remove default arrow icon in some browsers */
+}
+
+/* Style for the dropdown arrow */
+.select::after {
+  content: '\25BC';
+  /* Unicode character for a down arrow */
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  /* Adjust the right position as needed */
+  transform: translateY(-50%);
+  color: white;
+}
+
+.select::placeholder {
+  color: red; /* Adjust the color as needed */
 }
