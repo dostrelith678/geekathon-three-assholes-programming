@@ -1,11 +1,20 @@
-import React, {useState} from 'react';
-import styles from '../styles/not-global.module.css';
+// 'use client'; // Remove this line, it's not necessary
 
-export default function CreateClone2() {
+import React from 'react';
+import styles from '../styles/not-global.module.css';
+import {useState} from 'react';
+import {useRouter} from 'next/router';
+
+const clonePage = () => {
+
     const [formData, setFormData] = useState({
         pp: null,
         username: '',
         description: '',
+        firstname: '',
+        lastname: '',
+        age: '',
+        sex: '',
         relationship: '',
         jobtitle: '',
         companyname: '',
@@ -18,15 +27,31 @@ export default function CreateClone2() {
         infant: [],
         skill: [],
         favorite: '',
-        selfies: null
+        selfies: []
     });
 
     const handleChange = (e) => {
-        const { name, value, type } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        const {name, options} = e.target;
+
+        // Si l'élément est un select avec l'attribut "multiple"
+        if (options) {
+            const selectedValues = Array.from(options)
+                .filter((option) => option.selected)
+                .map((option) => option.value);
+
+            // Mettre à jour l'état avec le tableau de valeurs
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [name]: selectedValues,
+            }));
+        } else {
+            // Si l'élément est un champ de texte normal
+            const {value} = e.target;
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
     };
 
     const handleFileChange = (e) => {
@@ -124,14 +149,12 @@ export default function CreateClone2() {
                     {/*emotional trait*/}
                     <div className={styles.box}>
                         <select
-                            className={styles.select2}
                             id="emotionnal"
                             name="emotionnal"
                             multiple
-                            value={formData.emotionnal} // This should be an array
+                            value={formData.emotionnal}
                             onChange={handleChange}
                         >
-                            <option value="" disabled>Emotional traits</option>
                             <option value="ambitious">Ambitious</option>
                             <option value="cheerful">Cheerful</option>
                             <option value="childish">Childish</option>
@@ -150,6 +173,30 @@ export default function CreateClone2() {
                             <option value="unflirty">Unflirty</option>
                         </select>
                     </div>
+                    <select
+                        id="emotionnal"
+                        name="emotionnal"
+                        multiple
+                        value={formData.emotionnal}
+                        onChange={handleChange}
+                    >
+                        <option value="ambitious">Ambitious</option>
+                        <option value="cheerful">Cheerful</option>
+                        <option value="childish">Childish</option>
+                        <option value="clumsy">Clumsy</option>
+                        <option value="creative">Creative</option>
+                        <option value="erratic">Erratic</option>
+                        <option value="genius">Genius</option>
+                        <option value="gloomy">Gloomy</option>
+                        <option value="goofball">Goofball</option>
+                        <option value="highmaintenance">High Maintenance</option>
+                        <option value="hotheaded">Hot Headed</option>
+                        <option value="paranoid">Paranoid</option>
+                        <option value="romantic">Romantic</option>
+                        <option value="selfassured">Self Assured</option>
+                        <option value="squeamish">Squeamish</option>
+                        <option value="unflirty">Unflirty</option>
+                    </select>
 
                     <div className={styles.box}>
                         <input
@@ -173,3 +220,5 @@ export default function CreateClone2() {
         </div>
     );
 }
+
+export default clonePage;
