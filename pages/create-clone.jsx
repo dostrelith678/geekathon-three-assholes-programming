@@ -11,6 +11,10 @@ const clonePage = () => {
         pp:null,
         username: '',
         description: '',
+        firstname:'',
+        lastname:'',
+        age:'',
+        sex:'',
         relationship: '',
         jobtitle: '',
         companyname: '',
@@ -23,7 +27,7 @@ const clonePage = () => {
         infant: [],
         skill: [],
         favorite: '',
-        selfies:null
+        selfies:[]
       });
     
     const handleChange = (e) => {
@@ -53,6 +57,14 @@ const clonePage = () => {
         <h2 className={styles.heading}>Create a Dopple</h2>
         <form className={styles.form}>
 
+            <label htmlFor="pp">Upload a Profile Picture:</label>
+            <input
+              type="file"
+              id="pp"
+              name="pp"
+              onChange={handleFileChange}
+            />
+
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -70,6 +82,44 @@ const clonePage = () => {
               value={formData.description}
               onChange={handleChange}
             />
+
+            <label htmlFor="fistname">First Name:</label>
+            <input
+              type="text"
+              id="fistname"
+              name="fistname"
+              value={formData.fistname}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="lastname">Last Name:</label>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              value={formData.lastname}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="age">Age:</label>
+            <input
+              type="text"
+              id="age"
+              name="age"
+              value={formData.age}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="sex">Sex:</label>
+            <select
+            id="sex"
+            name="sex"
+            value={formData.sex}
+            onChange={handleChange}
+            >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            </select>
 
             <label htmlFor="relationship">Relationship:</label>
             <select
@@ -137,32 +187,6 @@ const clonePage = () => {
             <option value="unflirty">Unflirty</option>
             </select>
 
-            <label htmlFor="emotionnal">Emotionnal traits:</label>
-            <select
-            id="emotionnal"
-            name="emotionnal"
-            multiple
-            value={formData.emotionnal}
-            onChange={handleChange}
-            >
-            <option value="ambitious">Ambitious</option>
-            <option value="cheerful">Cheerful</option>
-            <option value="childish">Childish</option>
-            <option value="clumsy">Clumsy</option>
-            <option value="creative">Creative</option>
-            <option value="erratic">Erratic</option>
-            <option value="genius">Genius</option>
-            <option value="gloomy">Gloomy</option>
-            <option value="goofball">Goofball</option>
-            <option value="highmaintenance">High Maintenance</option>
-            <option value="hotheaded">Hot Headed</option>
-            <option value="paranoid">Paranoid</option>
-            <option value="romantic">Romantic</option>
-            <option value="selfassured">Self Assured</option>
-            <option value="squeamish">Squeamish</option>
-            <option value="unflirty">Unflirty</option>
-            </select>
-
             <label htmlFor="hobby">Hobby traits:</label>
             <select
             id="hobby"
@@ -182,24 +206,107 @@ const clonePage = () => {
             <option value="recycledisciple">Recycle Disciple</option>
             </select>
 
-            <label htmlFor="hobby">Hobby traits:</label>
+            <label htmlFor="lifestyle">Lifestyle traits:</label>
             <select
-            id="hobby"
-            name="hobby"
+            id="lifestyle"
+            name="lifestyle"
             multiple
-            value={formData.hobby}
+            value={formData.lifestyle}
             onChange={handleChange}
             >
-            <option value="artlover">Art Lover</option>
-            <option value="bookworm">Book Worm</option>
-            <option value="dancemachine">Dance Machine</option>
-            <option value="foodie">Foodie</option>
-            <option value="geek">Geek</option>
-            <option value="loveoutdoors">Love Outdoors</option>
-            <option value="maker">Maker</option>
-            <option value="musiclover">Music Lover</option>
-            <option value="recycledisciple">Recycle Disciple</option>
+            <option value="active">Active</option>
+            <option value="adventurous">Adventurous</option>
+            <option value="childislands">Child of Islands</option>
+            <option value="childocean">Child of Ocean</option>
+            <option value="freegan">Freegan</option>
+            <option value="glutton">Glutton</option>
+            <option value="greenfriend">Green Friend</option>
+            <option value="kleptomaniac">Kleptomaniac</option>
+            <option value="lactoseintolerant">Lactose intolerant</option>
+            <option value="lazy">Lazy</option>
+            <option value="materialistic">Materialistic</option>
+            <option value="neat">Neat</option>
+            <option value="overachiever">Overachiever</option>
+            <option value="perfectionist">Perfectionist</option>
+            <option value="rancher">Rancher</option>
+            <option value="slob">Slob</option>
+            <option value="vegetarian">Vegetarian</option>
             </select>
+
+            <label htmlFor="social">Social traits:</label>
+            <select
+            id="social"
+            name="social"
+            multiple
+            value={formData.social}
+            onChange={handleChange}
+            >
+            <option value="animalenthusiast">Animal Enthusiast</option>
+            <option value="bro">Bro</option>
+            <option value="catlover">Cat Lover</option>
+            <option value="doglover">Dog Lover</option>
+            <option value="evil">Evil</option>
+            <option value="familyoriented">Family Oriented</option>
+            <option value="good">Good</option>
+            <option value="hateschildren">Hates Children</option>
+            <option value="horselover">Horse Lover</option>
+            <option value="insider">Insider</option>
+            <option value="jealous">Jealous</option>
+            <option value="loner">Loner</option>
+            <option value="loyal">Loyal</option>
+            <option value="mean">Mean</option>
+            <option value="noncommittal">Non Committal</option>
+            <option value="outgoing">Outgoing</option>
+            <option value="partyanimal">Party Animal</option>
+            <option value="proper">Proper</option>
+            <option value="selfabsorbed">Self-Absorbed</option>
+            <option value="snob">Snob</option>
+            <option value="sociallyawkward">Socially Awkward</option>
+            </select>
+
+            <label htmlFor="toddler">Toddler traits:</label>
+            <select
+            id="toddler"
+            name="toddler"
+            multiple
+            value={formData.toddler}
+            onChange={handleChange}
+            >
+            <option value="angelic">Angelic</option>
+            <option value="charmer">Charmer</option>
+            <option value="clingy">Clingy</option>
+            <option value="fussy">Fussy</option>
+            <option value="independent">Independent</option>
+            <option value="inquisitive">Inquisitive</option>
+            <option value="silly">Silly</option>
+            <option value="wild">Wild</option>
+            </select>
+
+
+            <label htmlFor="infant">Infant traits:</label>
+            <select
+            id="infant"
+            name="infant"
+            multiple
+            value={formData.infant}
+            onChange={handleChange}
+            >
+            <option value="cautious">Cautious</option>
+            <option value="sensitive">Sensitive</option>
+            <option value="calm">Calm</option>
+            <option value="intense">Intense</option>
+            <option value="wiggly">Wiggly</option>
+            <option value="sunny">Sunny</option>
+            </select>
+
+            <label htmlFor="selfies">Upload up to 7 selfies:</label>
+            <input
+              type="file"
+              id="selfies"
+              name="selfies"
+              onChange={handleFileChange}
+              multiple
+            />
 
             <div className={styles.box}>
                 <button className={styles.button} type="button" onClick={handleSubmit}>CREATE</button>
