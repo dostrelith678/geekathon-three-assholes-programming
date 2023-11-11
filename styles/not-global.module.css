@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-/* Login and Register */
+/* Base Styles */
 .body {
   align-items: center;
 }
@@ -9,17 +9,19 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* Enable vertical scrolling */
-  height: 100vh; /* Set a fixed height for the container, in this case, 100% of the viewport height */
+  overflow-y: auto;
+  height: 100vh;
   background-color: rgba(133, 44, 207, 1);
 }
 
+/* Image Section */
 .image-section {
   flex: 1;
   background: url('../public/group.png') center/cover;
   margin: 10px;
 }
 
+/* Top Section */
 .top-section {
   text-align: center;
   background-color: black;
@@ -30,6 +32,7 @@
   color: rgba(133, 44, 207, 1);
 }
 
+/* Login Section */
 .login-section {
   display: flex;
   flex: 1;
@@ -38,14 +41,14 @@
   align-items: center;
   padding: 40px;
   background-color: black;
-  height: auto; /* Takes up the remaining space */
+  height: auto;
 }
 
+/* Form Styles */
 .box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Center the content horizontally within .box */
   margin-bottom: 20px;
   color: white;
 }
@@ -56,54 +59,45 @@
   width: 100%;
 }
 
-.input {
-  width: 153px;
-  height: 40px;
+.input,
+.input2,
+.select,
+.textarea {
+  width: 300px;
+  height: 60px;
   border: 2px solid rgba(133, 44, 207, 1);
   border-radius: 6px;
   background-color: black;
   color: white;
+  padding: 20px; /* Adjust padding as needed */
+  box-sizing: border-box;
+  position: relative;
 }
 
-.input::placeholder {
-  text-align: center;
+.input::placeholder,
+.input2::placeholder,
+.select::placeholder {
   color: rgba(133, 44, 207, 1);
   font-size: 13px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.2;
   letter-spacing: 1px;
-  text-decoration: none;
-  text-transform: uppercase;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  white-space: normal;
+  text-align: justify;
 }
 
-.button {
-  width: 153px;
-  height: 40px;
-  border: black;
-  border-radius: 6px;
-  background-color: black;
-  color: rgba(133, 44, 207, 1);
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: 1px;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-family: 'Inter', serif;
-}
-
+/* Button Styles */
+.button,
 .button2 {
   width: 153px;
   height: 40px;
-  border: 2px solid rgba(133, 44, 207, 1);
   border-radius: 6px;
-  background-color: rgba(133, 44, 207, 1);
-  color: white;
   cursor: pointer;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.4;
   letter-spacing: 1px;
   text-decoration: none;
@@ -111,6 +105,20 @@
   font-family: 'Inter', serif;
 }
 
+.button {
+  border: black;
+  background-color: black;
+  color: rgba(133, 44, 207, 1);
+  transition: background-color 0.3s;
+}
+
+.button2 {
+  border: 2px solid rgba(133, 44, 207, 1);
+  background-color: rgba(133, 44, 207, 1);
+  color: white;
+}
+
+/* Forgot Password Section */
 .forgot-password {
   text-align: center;
   background-color: black;
@@ -119,17 +127,16 @@
 
 .forgot-password a {
   text-decoration: none;
-  /* Remove underline */
   color: rgba(133, 44, 207, 1);
   cursor: pointer;
   text-transform: lowercase;
-  font-style: normal;
   font-size: 9px;
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 1px;
 }
 
+/* Checkbox Styles */
 .checkbox {
   position: absolute;
   opacity: 0;
@@ -180,9 +187,7 @@ input:checked + .slider::before {
   position: absolute;
   display: inline-block;
   margin-right: 60px;
-  /* Adjust this value to position the text */
   line-height: 24px;
-  /* Align text vertically with the slider */
   color: rgba(133, 44, 207, 1);
   font-size: 13px;
   font-weight: 400;
@@ -191,6 +196,7 @@ input:checked + .slider::before {
   text-transform: uppercase;
 }
 
+/* Profile Info Section */
 .profile-info {
   display: flex;
   flex-direction: column;
@@ -211,68 +217,11 @@ input:checked + .slider::before {
   color: white;
 }
 
+/* Top Section 2 */
 .top-section2 {
   text-align: center;
   background-color: rgba(133, 44, 207, 1);
   color: black;
   font-weight: 900;
-  height: 10vh; /* 10% of the viewport height */
-}
-
-.input2 {
-  width: 300px;
-  height: 60px;
-  border: 2px solid rgba(133, 44, 207, 1);
-  border-radius: 6px;
-  background-color: black;
-  color: white;
-  padding: 20px;
-  /* Add padding to create space for the placeholder text */
-  box-sizing: border-box;
-  /* Include padding in the width and height calculations */
-  position: relative;
-}
-
-.input2::placeholder {
-  color: rgba(133, 44, 207, 1);
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 1px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  white-space: normal; /* Allow text to wrap */
-  text-align: justify;
-}
-
-.select {
-  width: 300px;
-  height: 60px;
-  border: 2px solid rgba(133, 44, 207, 1);
-  border-radius: 6px;
-  background-color: black;
-  color: white;
-  padding: 10px;
-  /* Add padding to create space for the selected option text */
-  box-sizing: border-box;
-  /* Include padding in the width and height calculations */
-  appearance: none;
-  /* Remove default arrow icon in some browsers */
-}
-
-/* Style for the dropdown arrow */
-.select::after {
-  content: '\25BC';
-  /* Unicode character for a down arrow */
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  /* Adjust the right position as needed */
-  transform: translateY(-50%);
-  color: white;
-}
-
-.select::placeholder {
-  color: red; /* Adjust the color as needed */
+  height: 10vh;
 }
