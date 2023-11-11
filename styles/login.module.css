@@ -11,31 +11,38 @@
 
 .App {
   display: flex;
+  flex-direction: column; /* Change to column layout */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 100vw;
   height: 100vh; /* Fill the entire viewport height */
+  background-color: rgba(133, 44, 207, 1);
 }
 
 .image-section {
-  flex: 2;
-  background: url('../public/duck.png') center/cover;
-  background-size: cover; /* Make the background cover both horizontally and vertically */
+  flex: 0.6;
+  background: url('../public/group.png') center/cover;
+}
+
+.topSection {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
 }
 
 .login-section {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: rgba(173, 216, 230, 0.5); /* Darker pink color on hover */
+  background-color: black; /* Darker pink color on hover */
   height: 100%; /* Fill the entire height of the .App container */
 }
 
 .heading {
-  color: #333;
+  color: #fff; /* Change to white */
   margin-bottom: 20px;
 }
 
@@ -77,3 +84,4 @@
 .button:hover {
   background-color: #ff1493; /* Darker pink color on hover */
 }
+/* login.module.css */
