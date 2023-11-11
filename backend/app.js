@@ -69,7 +69,7 @@ const getCloneSystemPrompt = async (cloneId) => {
     // Combine all prompts to form the complete system prompt
     const completePrompt = `${systemPrompt} ${personalityPrompt} ${backgroundPrompt} ${workPrompt} ${relationshipPrompt} ${interestPrompt} ${childhoodPrompt}`;
 
-    return completePrompt.trim(); // Trim to remove leading/trailing spaces
+    return { cloneUsername: cloneData.username, cloneFirstName: cloneData.firstname, clonePrompt: completePrompt.trim() } // Trim to remove leading/trailing spaces
 }
 
 // Routes
@@ -200,32 +200,36 @@ app.post('/get-chat-response', async (req, res) => {
             return res.status(400).json({ error: 'Invalid request body' });
         }
 
-        // Enrich the chatMessage with a pre-prepared prompt from the clone data (replace with your logic)
-        const clonePrompt = await getCloneSystemPrompt(cloneId);
+        const shouldSendSelfie = userMessage.includes('selfie')
 
-        // Make request to ChatGPT 4.0
-        const chatCompletion = await openai.chat.completions.create({
-            messages: [
-                { role: "system", content: clonePrompt },
-                { role: 'user', content: userMessage }
-            ],
-            model: 'gpt-4', //model: 'gpt-4-0613'
-        });
+        // Get a pre-prepared prompt from the clone data to enrich the response
+        const { cloneUsername, cloneFirstName, clonePrompt } = await getCloneSystemPrompt(cloneId);
 
-        // console.log(chatCompletion)
+        if (shouldSendSelfie) {
 
-        // Extract the generated response from ChatGPT
-        const generatedResponse = chatCompletion.choices[0].message;
+            const selfiePrompt = userMessage
+        } else {
+            // Make request to ChatGPT 4.0
+            const chatCompletion = await openai.chat.completions.create({
+                messages: [
+                    { role: "system", content: clonePrompt },
+                    { role: 'user', content: userMessage }
+                ],
+                model: 'gpt-4', //model: 'gpt-4-0613'
+            });
+            // Extract the generated response from ChatGPT
+            const generatedResponse = chatCompletion.choices[0].message;
 
-        // Return the generated response to the client
-        return res.status(200).json({ generatedResponse });
+            // Return the generated response to the client
+            return res.status(200).json({ cloneUsername, cloneFirstName, generatedResponse });
+        }
     } catch (error) {
         console.error('Error getting chat response:', error);
         return res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-// Train selfie model
+// Train selfie model - takes too long to demo
 app.post('/selfie-training', (req, res) => {
     // crop images to 512x512
     // realistic-vision-v51 <- model_id
