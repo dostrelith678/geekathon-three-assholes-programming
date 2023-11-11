@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/login.module.css';
+import styles from '../styles/not-global.module.css';
 import { useRouter } from 'next/router';
 
 const SignupPage = () => {
@@ -9,37 +9,37 @@ const SignupPage = () => {
     const [checkboxChecked, setCheckboxChecked] = useState(false);
 
     const handleSubmit = async (e) => {
-      e.preventDefault();
+        e.preventDefault();
 
-      try {
-        // Envoyez les données du formulaire à votre backend
-        const response = await fetch('http://localhost:3008/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password, "userType": checkboxChecked }),
-        });
+        try {
+            // Envoyez les données du formulaire à votre backend
+            const response = await fetch('http://localhost:3008/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password, "userType": checkboxChecked }),
+            });
 
-        if (response.ok) {
-            // Le serveur a renvoyé une réponse 200 OK
-            const data = await response.json();
-            console.log(data);
-            // Vérifier la valeur "influencer" dans la réponse du serveur
-            if (data.influencer) {
-                router.push('/create-clone');
+            if (response.ok) {
+                // Le serveur a renvoyé une réponse 200 OK
+                const data = await response.json();
+                console.log(data);
+                // Vérifier la valeur "influencer" dans la réponse du serveur
+                if (data.influencer) {
+                    router.push('/create-clone');
+                } else {
+                    router.push('/feed');
+                }
             } else {
-                router.push('/feed');
+                // Le serveur a renvoyé une erreur
+                const errorData = await response.json();
+                console.error('Erreur de connexion:', errorData.error);
+                // Gérez l'erreur de connexion ici (affichez un message d'erreur, etc.).
             }
-        } else {
-            // Le serveur a renvoyé une erreur
-            const errorData = await response.json();
-            console.error('Erreur de connexion:', errorData.error);
-            // Gérez l'erreur de connexion ici (affichez un message d'erreur, etc.).
+        } catch (error) {
+            console.error('Error during signup:', error);
         }
-      } catch (error) {
-        console.error('Error during signup:', error);
-      }
     };
 
     const handleToggle = () => {
