@@ -53,7 +53,7 @@ const LoginPage = () => {
             <div className={styles['login-section']}>
                 <form className={styles.form}>
                     <div className={styles.box}>
-                        <input className={styles.input} type="text" id="email" name="email" placeholder="EMAIL"/>
+                        <input className={styles.input} type="text" id="email" name="email" placeholder="EMAIL" value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
 
                     <div className={styles.box}>
@@ -61,7 +61,7 @@ const LoginPage = () => {
                     </div>
 
                     <div className={styles.box}>
-                        <button className={styles.button} type="button" onClick={handleLogin}>LOGIN</button>
+                        <button className={styles.button} type="button" onClick={handleSubmit}>LOGIN</button>
                     </div>
 
                     <div className={styles.box}>
