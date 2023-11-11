@@ -19,3 +19,62 @@ audio::-webkit-media-controls-panel {
     background-color: transparent;
     color: inherit;
   }
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    color: white;
+    margin-left: 120px;
+
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 24px;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider{
+    background-color: rgba(133, 44, 207, 1);;
+}
+input:checked + .slider::before{
+    transform: translateX(16px);
+}
+
+.sliderText {
+    position: absolute;
+    display: inline-block;
+    margin-right: 60px; /* Adjust this value to position the text */
+    line-height: 24px; /* Align text vertically with the slider */
+    color: rgba(133, 44, 207, 1);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+}

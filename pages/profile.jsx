@@ -1,7 +1,7 @@
 // 'use client'; // Remove this line, it's not necessary
 
 import React from 'react';
-import styles from '../styles/login.module.css';
+import styles from '../styles/not-global.module.css';
 // import { useMemo } from 'react'; // Assurez-vous que le chemin est correct
 
 const Profile = () => {

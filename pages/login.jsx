@@ -1,6 +1,6 @@
 // 'use client'; // Remove this line, it's not necessary
 import React from 'react';
-import styles from '../styles/login.module.css';
+import styles from '../styles/not-global.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -61,7 +61,7 @@ const LoginPage = () => {
                     </div>
 
                     <div className={styles.box}>
-                        <button className={styles.button} type="button" onClick={handleSubmit}>LOGIN</button>
+                        <button className={styles.button2} type="button" onClick={handleSubmit}>LOG IN</button>
                     </div>
 
                     <div className={styles.box}>

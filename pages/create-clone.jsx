@@ -1,9 +1,9 @@
 // 'use client'; // Remove this line, it's not necessary
 
 import React from 'react';
-import styles from '../styles/login.module.css';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import styles from '../styles/not-global.module.css';
+import {useState} from 'react';
+import {useRouter} from 'next/router';
 
 const clonePage = () => {
     const router = useRouter();
@@ -29,7 +29,7 @@ const clonePage = () => {
         favorite: '',
         selfies:[]
       });
-    
+
     const handleChange = (e) => {
       const { name, options } = e.target;
 
@@ -38,7 +38,7 @@ const clonePage = () => {
         const selectedValues = Array.from(options)
           .filter((option) => option.selected)
           .map((option) => option.value);
-    
+
         // Mettre à jour l'état avec le tableau de valeurs
         setFormData((prevFormData) => ({
           ...prevFormData,
