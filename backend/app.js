@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const firebase = require('firebase');  // Add Firebase library
+const firebase = require('firebase');
+const admin = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey.json");
 const paypal = require('paypal-rest-sdk');  // Add PayPal library
 
 // Initialize Firebase
@@ -12,10 +14,13 @@ const firebaseConfig = {
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGING_SENDER_ID,
     appId: process.env.FIREBASE_APP_ID,
-    measurementId: process.env.MEASUREMENT_ID
+    measurementId: process.env.MEASUREMENT_ID,
+    databaseURL: process.env.FIREBASE_REALTIME_DATABASE_URL,
+    credential: admin.credential.cert(serviceAccount)
 };
 
 firebase.initializeApp(firebaseConfig);
+const db = firebase.database()
 
 // Initialize PayPal
 paypal.configure({
@@ -24,8 +29,7 @@ paypal.configure({
 
 // Create Express app
 const app = express();
-
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Middleware
 app.use(bodyParser.json());
@@ -45,7 +49,22 @@ app.post('/signup', async (req, res) => {
         // Create user in Firebase
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
 
-        // Additional logic based on userType, if needed
+        // Initiate user in Realtime Database
+
+        await db.ref('/users').set({
+            username: "",
+            email: email,
+            emailVerification: false,
+            verification: false,
+            firstName: "",
+            lastName: "",
+            userType: userType,
+            age: 0,
+            idCard: "",
+            subscription: false,
+            authority: 2
+        })
+
 
         // Send success response
         return res.status(201).json({ message: 'User created successfully', userId: userCredential.user.uid });
