@@ -44,6 +44,11 @@ const port = process.env.PORT || 3008;
 app.use(bodyParser.json());
 app.use(cors());
 
+
+const getCloneSystemPrompt = async (cloneId) => {
+    return "Clone prompt"
+}
+
 // Routes
 
 // Sign up a new user via Firebase
@@ -149,7 +154,7 @@ app.post('/get-chat-response', async (req, res) => {
         }
 
         // Enrich the chatMessage with a pre-prepared prompt from the clone data (replace with your logic)
-        const clonePrompt = getCloneSystemPrompt(cloneId);
+        const clonePrompt = await getCloneSystemPrompt(cloneId);
 
         // Make request to ChatGPT 4.0
         const chatCompletion = await openai.chat.completions.create({
@@ -172,6 +177,11 @@ app.post('/get-chat-response', async (req, res) => {
     }
 });
 
+// Train selfie model
+app.post('/selfie-training', (req, res) => {
+    // crop images to 512x512
+    // realistic-vision-v51 <- model_id
+})
 
 // Generate AI selfie
 app.post('/generate-selfie', (req, res) => {
