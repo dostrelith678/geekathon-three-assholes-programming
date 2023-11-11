@@ -1,7 +1,7 @@
 /* login.module.css */
 .body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,15 +20,23 @@
 }
 
 .image-section {
-  flex: 0.6;
+  flex: 1;
   background: url('../public/group.png') center/cover;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-.topSection {
+.top-section {
   text-align: center;
-  padding: 20px;
-  background-color: #333;
+  background-color: black;
 }
+
+.top-section h1{
+  font-weight: 900;
+  color: rgba(133, 44, 207, 1);
+}
+
+
 
 .login-section {
   display: flex;
@@ -39,6 +47,12 @@
   padding: 40px;
   background-color: black; /* Darker pink color on hover */
   height: 100%; /* Fill the entire height of the .App container */
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
 }
 
 .heading {
@@ -53,16 +67,15 @@
 }
 
 .label {
-  color: #555;
+  color: white;
   margin-bottom: 8px;
 }
 
 .input {
   padding: 12px;
-  margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 10px; /* Make the input boxes rounder */
-  outline: none; /* Remove the default input outline */
+  border-radius: 10px;
+  outline: none;
 }
 
 .button-container {
