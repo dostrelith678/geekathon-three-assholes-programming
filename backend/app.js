@@ -7,6 +7,9 @@ const cors = require('cors');
 const serviceAccount = require("./serviceAccountKey.json");
 const paypal = require('paypal-rest-sdk');  // Add PayPal library
 const { OpenAI } = require('openai')
+const { getPrompt, getNegativePrompt } = require('./selfiePrompts')
+const axios = require('axios');
+
 
 // Initialize ChatGPT
 const openai = new OpenAI({
@@ -52,7 +55,7 @@ const getCloneSystemPrompt = async (cloneId) => {
     const cloneData = snapshot.val();
 
     // Construct the system prompt based on the provided data
-    const systemPrompt = `You are ${cloneData.firstname} ${cloneData.lastname}, ${cloneData.age}-year-old ${cloneData.sex[0]}.`;
+    const systemPrompt = `You are ${cloneData.firstname} ${cloneData.lastname}, ${cloneData.age}-year-old ${cloneData.sex[0]}. Do not respond like a chatbot, instead respond as this real person.`;
 
     const personalityPrompt = `Emotionally, you are ${cloneData.emotionnal.join(', ')}.`;
 
@@ -200,14 +203,48 @@ app.post('/get-chat-response', async (req, res) => {
             return res.status(400).json({ error: 'Invalid request body' });
         }
 
+        // dumb check
         const shouldSendSelfie = userMessage.includes('selfie')
 
         // Get a pre-prepared prompt from the clone data to enrich the response
         const { cloneUsername, cloneFirstName, clonePrompt } = await getCloneSystemPrompt(cloneId);
 
         if (shouldSendSelfie) {
+            const selfiePrompt = userMessage.split('selfie')[1].trim()
+            let modelId;
 
-            const selfiePrompt = userMessage
+            if (cloneId == "-NizUL3wsBVBA-NUZOnM") { // Arnold
+                modelId = process.env.ARNOLD_MODEL_ID
+            } else if (cloneId == "-Nj-U4exXBU94ekoEPW5") { // Selma 
+                modelId = process.env.SELMA_MODEL_ID
+            } else {
+                return res.status(200).json({ cloneUsername, cloneFirstName, generatedResponse: { role: "assistant", message: "No, I can't send you a selfie right now!" } })
+            }
+            const selfieRequestBody =
+            {
+                "key": process.env.STABLE_DIFFUSION_API_KEY,
+                "model_id": modelId,
+                "prompt": getPrompt(cloneUsername, selfiePrompt),
+                "negative_prompt": getNegativePrompt(),
+                "height": "768",
+                "samples": "1",
+                "num_inference_steps": "30",
+                "safety_checker": "no",
+                "enhance_prompt": "no",
+                "upscale": "no",
+                "seed": null,
+                "guidance_scale": 7.5,
+                "webhook": null,
+                "track_id": null
+            }
+
+            try {
+                const response = await axios.post(process.env.SELFIE_GENERATOR_URL, selfieRequestBody);
+
+                return res.status(200).json({ cloneUsername, cloneFirstName, generatedResponse: { role: "assistant", content: response.data.output[0] } })
+            } catch (error) {
+                console.error('Error:', error.message);
+            }
         } else {
             // Make request to ChatGPT 4.0
             const chatCompletion = await openai.chat.completions.create({
@@ -235,10 +272,6 @@ app.post('/selfie-training', (req, res) => {
     // realistic-vision-v51 <- model_id
 })
 
-// Generate AI selfie
-app.post('/generate-selfie', (req, res) => {
-    // Handle generating AI selfie using stablediffusion API
-});
 
 // Get all clones available
 app.get('/get-all-clones', async (req, res) => {
