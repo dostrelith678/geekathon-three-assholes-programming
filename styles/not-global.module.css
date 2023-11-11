@@ -196,23 +196,19 @@ input:checked + .slider::before {
   flex-direction: column;
   align-items: center;
   background-color: black;
-  height: 20vh; /* 20% of the viewport height */
+  height: auto;
 }
 
 .profile-image {
   width: 150px;
-  /* Adjust the width and height as needed for your round image */
   height: 150px;
   border-radius: 50%;
-  /* This will make the image round */
-  /* Adjust margin as needed */
   margin-top: 20px;
 }
 
 .twitter-handle {
   font-size: 12px;
   color: white;
-  margin-bottom: 160px;
 }
 
 .top-section2 {
