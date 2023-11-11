@@ -4,13 +4,38 @@ import React from 'react';
 import styles from '../styles/login.module.css';
 // import { useMemo } from 'react'; // Assurez-vous que le chemin est correct
 
-export default function Profile() {
-  // const chatUUID = useMemo(() => uuidv4(), []);
-  // const { messages, input, handleInputChange, handleSubmit } = useChat({
-  //     id: chatUUID,
-  //     body: { id: chatUUID },
-  //     api: '/api/steamship/chat'
-  // });
+const Profile = () => {
+
+  const [formData, setFormData] = useState({
+    username: '',
+    firstName: '',
+    lastName: '',
+    age: '',
+    paypalLink: '',
+    idCard: null, // Use null as initial value for file input
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData({
+      ...formData,
+      [name]: files[0], // Assuming you only allow single file selection
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here (e.g., send data to server)
+    console.log('Form data:', formData);
+  };
 
   return (
       <div className={styles.App}>
@@ -18,17 +43,66 @@ export default function Profile() {
         <div className={styles['login-section']}>
           <h2 className={styles.heading}>Login</h2>
           <form className={styles.form}>
-            <label className={styles.label} htmlFor="username">Username:</label>
-            <input className={styles.input} type="text" id="username" name="username" />
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
 
-            <label className={styles.label} htmlFor="password">Password:</label>
-            <input className={styles.input} type="password" id="password" name="password" />
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="age">Age:</label>
+            <input
+              type="text"
+              id="age"
+              name="age"
+              value={formData.age}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="paypalLink">PayPal Link:</label>
+            <input
+              type="text"
+              id="paypalLink"
+              name="paypalLink"
+              value={formData.paypalLink}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="idCard">Upload ID Card:</label>
+            <input
+              type="file"
+              id="idCard"
+              name="idCard"
+              onChange={handleFileChange}
+            />
+
             <div className={styles['button-container']}>
-              <button className={styles.button} type="submit">Login</button>
-              <button className={styles.button} type="submit">Sign Up</button>
+              <button className={styles.button} type="submit" onClick={handleSubmit}>UPDATE</button>
             </div>
           </form>
         </div>
       </div>
   );
 }
+
+export default Profile;
