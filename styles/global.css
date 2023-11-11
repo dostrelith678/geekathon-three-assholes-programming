@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("/valentina.jpg"); /* Remplacez avec votre base64 */
+    background-size: cover;
+    background-position: center;
+    overflow-y: hidden;
+    /* Autres styles globaux */
+  }
+audio {
+    width: 100%;
+    background-color: transparent; /* Enlève le fond noir */
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: transparent;
+    color: inherit;
+  }

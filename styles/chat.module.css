@@ -1,0 +1,163 @@
+/* chat.module.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Ajoutez cette ligne pour permettre le retour à la ligne */
+  height: 100vh;
+  min-height: 480px;
+  background-color: rgba(253, 253, 253, 0.5);
+}
+
+.header {
+  align-items: start;
+  width: 100%;
+  height: 64px;
+}
+
+.containerchat {
+  display: flex;
+  align-items: flex-end;
+}
+
+.chatWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+  padding-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  align-items: center; /* Centre les éléments verticalement */
+}
+
+.textareacontainer {
+  position: relative;
+  display: flex;
+  align-items: center; /* Centre les éléments verticalement */
+  width:224px;
+}
+
+.textarea {
+  flex-grow: 1; /* L'input prend tout l'espace disponible */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 32px 0px 0px 32px;
+  font-size: 14px;
+  resize: none;
+  overflow: hidden;
+  transition: height 0.3s;
+}
+
+.button {
+  background-color: #ff365c;
+  color: white;
+  border: none;
+  border-radius: 0px 32px 32px 0px;
+  padding: 13px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  width:96px;
+  display: flex;
+  align-items: center;
+}
+
+/* Ajoutez le style pour l'icône */
+.button svg {
+  margin: 0px 5px 0px 5px; /* Espace entre l'icône et le texte */
+  width: 16px; /* Ajustez la taille de l'icône */
+  height: 16px; /* Ajustez la taille de l'icône */
+  fill: white; /* Icône de couleur blanche */
+}
+
+.header svg {
+  margin: 0px 5px 0px 5px; /* Espace entre l'icône et le texte */
+  width: 16px; /* Ajustez la taille de l'icône */
+  height: 16px; /* Ajustez la taille de l'icône */
+  fill: white; /* Icône de couleur blanche */
+}
+
+.buttoncontainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button:hover {
+  background-color: #fc2149;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 16px 16px 8px 16px;
+  margin: 5px;
+  max-width: 70%; /* Ajuster en fonction de vos besoins */
+  align-self: flex-end;
+  color:white;
+  background-color: #ff3e6a; /* Couleur de la bulle utilisateur */
+}
+
+.valentinamessage {
+  background-color: #1f1f1f; /* Couleur de la bulle Valentina */
+  padding: 10px;
+  border-radius: 16px 16px 16px 8px;
+  margin: 5px;
+  max-width: 70%; /* Ajuster en fonction de vos besoins */
+  align-self: flex-start;
+  color:white;
+}
+
+.messageName {
+  font-size: 12px;
+  color:white;
+  padding-bottom: 4px;
+}
+
+.header {
+  display: flex;
+  padding: 16px;
+  background-color: #ff365c;
+  width: 100%;
+  align-items: center;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.profilePicture {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+  position: relative; /* Nécessaire pour positionner l'indicateur en ligne */
+}
+
+.profilePicture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.greenCircle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+
+.title {
+  color: white;
+  font-size: 24px;
+  margin: 0;
+}
+
+.desc {
+  color: white;
+  font-size: 12px;
+  margin:0;
+}

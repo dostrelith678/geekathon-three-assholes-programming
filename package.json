@@ -1,0 +1,38 @@
+{
+  "name": "ai-dating",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@steamship/react": "^0.7.2",
+    "@types/node": "20.5.1",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "@types/react-syntax-highlighter": "^15.5.7",
+    "ai": "^2.2.9",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "cva": "^0.0.0",
+    "lucide-react": "^0.268.0",
+    "markdown-to-jsx": "^7.3.2",
+    "next": "13.4.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "tailwind-merge": "^1.14.0",
+    "typescript": "5.1.6",
+    "uuid": "^9.0.0",
+    "uuidv4": "^6.2.13",
+    "v4": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.2"
+  }
+}
