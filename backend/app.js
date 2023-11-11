@@ -3,32 +3,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const firebase = require('firebase');
 const admin = require("firebase-admin");
-// const serviceAccount = require("./serviceAccountKey.json");
+const cors = require('cors');
+const serviceAccount = require("./serviceAccountKey.json");
 const paypal = require('paypal-rest-sdk');  // Add PayPal library
 
 // Initialize Firebase
-// const firebaseConfig = {
-//     apiKey: process.env.FIREBASE_API_KEY,
-//     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-//     projectId: process.env.FIREBASE_PROJECT_ID,
-//     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-//     messagingSenderId: process.env.MESSAGING_SENDER_ID,
-//     appId: process.env.FIREBASE_APP_ID,
-//     measurementId: process.env.MEASUREMENT_ID,
-//     databaseURL: process.env.FIREBASE_REALTIME_DATABASE_URL,
-//     // credential: admin.credential.cert(serviceAccount)
-// };
-
 const firebaseConfig = {
-    apiKey: "AIzaSyA-oy3O119zC-6wmSuXsYizfmd9H5-6ilw",
-    authDomain: "dopplechat-388c3.firebaseapp.com",
-    databaseURL: "https://dopplechat-388c3-default-rtdb.firebaseio.com",
-    projectId: "dopplechat-388c3",
-    storageBucket: "dopplechat-388c3.appspot.com",
-    messagingSenderId: "762916518",
-    appId: "1:762916518:web:70c5aef385a25efe818e67",
-    measurementId: "G-Q8QDL6SL4F"
-  };
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.MEASUREMENT_ID,
+    databaseURL: process.env.FIREBASE_REALTIME_DATABASE_URL,
+    credential: admin.credential.cert(serviceAccount)
+};
 
 
 firebase.initializeApp(firebaseConfig);
@@ -41,10 +31,11 @@ paypal.configure({
 
 // Create Express app
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3008;
 
 // Middleware
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes
 
