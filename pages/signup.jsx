@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/login.module.css';
+import styles from '../styles/not-global.module.css';
 import { useRouter } from 'next/router';
 
 const SignupPage = () => {

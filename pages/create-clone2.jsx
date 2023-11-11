@@ -148,12 +148,12 @@ const clonePage = () => {
                     </div>
                     {/*emotional trait*/}
                     <div className={styles.box}>
-                        <select
-                            id="emotionnal"
-                            name="emotionnal"
-                            multiple
-                            value={formData.emotionnal}
-                            onChange={handleChange}
+                        <select className={styles.select} style={{height: '150px'}}
+                                id="emotionnal"
+                                name="emotionnal"
+                                multiple
+                                value={formData.emotionnal}
+                                onChange={handleChange}
                         >
                             <option value="ambitious">Ambitious</option>
                             <option value="cheerful">Cheerful</option>
@@ -173,49 +173,158 @@ const clonePage = () => {
                             <option value="unflirty">Unflirty</option>
                         </select>
                     </div>
-                    <select
-                        id="emotionnal"
-                        name="emotionnal"
-                        multiple
-                        value={formData.emotionnal}
-                        onChange={handleChange}
-                    >
-                        <option value="ambitious">Ambitious</option>
-                        <option value="cheerful">Cheerful</option>
-                        <option value="childish">Childish</option>
-                        <option value="clumsy">Clumsy</option>
-                        <option value="creative">Creative</option>
-                        <option value="erratic">Erratic</option>
-                        <option value="genius">Genius</option>
-                        <option value="gloomy">Gloomy</option>
-                        <option value="goofball">Goofball</option>
-                        <option value="highmaintenance">High Maintenance</option>
-                        <option value="hotheaded">Hot Headed</option>
-                        <option value="paranoid">Paranoid</option>
-                        <option value="romantic">Romantic</option>
-                        <option value="selfassured">Self Assured</option>
-                        <option value="squeamish">Squeamish</option>
-                        <option value="unflirty">Unflirty</option>
-                    </select>
-
+                    {/*hobby traits*/}
                     <div className={styles.box}>
-                        <input
-                            className={styles.input}
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="PASSWORD"
-                        />
+                        <select className={styles.select} style={{height: '150px'}}
+                                id="hobby"
+                                name="hobby"
+                                multiple
+                                value={formData.hobby}
+                                onChange={handleChange}
+                        >
+                            <option value="artlover">Art Lover</option>
+                            <option value="bookworm">Book Worm</option>
+                            <option value="dancemachine">Dance Machine</option>
+                            <option value="foodie">Foodie</option>
+                            <option value="geek">Geek</option>
+                            <option value="loveoutdoors">Love Outdoors</option>
+                            <option value="maker">Maker</option>
+                            <option value="musiclover">Music Lover</option>
+                            <option value="recycledisciple">Recycle Disciple</option>
+                        </select>
+                    </div>
+                    {/*lifestyle traits*/}
+                    <div className={styles.box}>
+                        <select className={styles.select} style={{height: '150px'}}
+                                id="lifestyle"
+                                name="lifestyle"
+                                multiple
+                                value={formData.lifestyle}
+                                onChange={handleChange}
+                        >
+                            <option value="active">Active</option>
+                            <option value="adventurous">Adventurous</option>
+                            <option value="childislands">Child of Islands</option>
+                            <option value="childocean">Child of Ocean</option>
+                            <option value="freegan">Freegan</option>
+                            <option value="glutton">Glutton</option>
+                            <option value="greenfriend">Green Friend</option>
+                            <option value="kleptomaniac">Kleptomaniac</option>
+                            <option value="lactoseintolerant">Lactose intolerant</option>
+                            <option value="lazy">Lazy</option>
+                            <option value="materialistic">Materialistic</option>
+                            <option value="neat">Neat</option>
+                            <option value="overachiever">Overachiever</option>
+                            <option value="perfectionist">Perfectionist</option>
+                            <option value="rancher">Rancher</option>
+                            <option value="slob">Slob</option>
+                            <option value="vegetarian">Vegetarian</option>
+                        </select>
+                    </div>
+                    {/*social traits*/}
+                    <div className={styles.box}>
+                        <select className={styles.select} style={{height: '150px'}}
+                                id="social"
+                                name="social"
+                                multiple
+                                value={formData.social}
+                                onChange={handleChange}
+                        >
+                            <option value="animalenthusiast">Animal Enthusiast</option>
+                            <option value="bro">Bro</option>
+                            <option value="catlover">Cat Lover</option>
+                            <option value="doglover">Dog Lover</option>
+                            <option value="evil">Evil</option>
+                            <option value="familyoriented">Family Oriented</option>
+                            <option value="good">Good</option>
+                            <option value="hateschildren">Hates Children</option>
+                            <option value="horselover">Horse Lover</option>
+                            <option value="insider">Insider</option>
+                            <option value="jealous">Jealous</option>
+                            <option value="loner">Loner</option>
+                            <option value="loyal">Loyal</option>
+                            <option value="mean">Mean</option>
+                            <option value="noncommittal">Non Committal</option>
+                            <option value="outgoing">Outgoing</option>
+                            <option value="partyanimal">Party Animal</option>
+                            <option value="proper">Proper</option>
+                            <option value="selfabsorbed">Self-Absorbed</option>
+                            <option value="snob">Snob</option>
+                            <option value="sociallyawkward">Socially Awkward</option>
+                        </select>
+                    </div>
+                    {/*toddler traits*/}
+                    <div className={styles.box}>
+                        <select className={styles.select} style={{height: '150px'}}
+                                id="toddler"
+                                name="toddler"
+                                multiple
+                                value={formData.toddler}
+                                onChange={handleChange}
+                        >
+                            <option value="angelic">Angelic</option>
+                            <option value="charmer">Charmer</option>
+                            <option value="clingy">Clingy</option>
+                            <option value="fussy">Fussy</option>
+                            <option value="independent">Independent</option>
+                            <option value="inquisitive">Inquisitive</option>
+                            <option value="silly">Silly</option>
+                            <option value="wild">Wild</option>
+                        </select>
+                    </div>
+                    {/*infant traits*/}
+                    <div className={styles.box}>
+                        <select className={styles.select} style={{height: '150px'}}
+                                id="infant"
+                                name="infant"
+                                multiple
+                                value={formData.infant}
+                                onChange={handleChange}
+                        >
+                            <option value="cautious">Cautious</option>
+                            <option value="sensitive">Sensitive</option>
+                            <option value="calm">Calm</option>
+                            <option value="intense">Intense</option>
+                            <option value="wiggly">Wiggly</option>
+                            <option value="sunny">Sunny</option>
+                        </select>
+                    </div>
+                    {/*skills*/}
+                    <div className={styles.box}>
+                        <select className={styles.select} style={{height: '150px'}}
+                                id="social"
+                                name="social"
+                                multiple
+                                value={formData.social}
+                                onChange={handleChange}
+                        >
+                            <option value="animalenthusiast">Animal Enthusiast</option>
+                            <option value="bro">Bro</option>
+                            <option value="catlover">Cat Lover</option>
+                            <option value="doglover">Dog Lover</option>
+                            <option value="evil">Evil</option>
+                            <option value="familyoriented">Family Oriented</option>
+                            <option value="good">Good</option>
+                            <option value="hateschildren">Hates Children</option>
+                            <option value="horselover">Horse Lover</option>
+                            <option value="insider">Insider</option>
+                            <option value="jealous">Jealous</option>
+                            <option value="loner">Loner</option>
+                            <option value="loyal">Loyal</option>
+                            <option value="mean">Mean</option>
+                            <option value="noncommittal">Non Committal</option>
+                            <option value="outgoing">Outgoing</option>
+                            <option value="partyanimal">Party Animal</option>
+                            <option value="proper">Proper</option>
+                            <option value="selfabsorbed">Self-Absorbed</option>
+                            <option value="snob">Snob</option>
+                            <option value="sociallyawkward">Socially Awkward</option>
+                        </select>
                     </div>
                     <div className={styles.box}>
-                        <button className={styles.button} type="submit">
-                            REGISTER
-                        </button>
+                        <button className={styles.button} type="button" onClick={handleSubmit}>CREATE</button>
                     </div>
                 </form>
-            </div>
-            <div className={styles['forgot-password']}>
-                <a href="#">Forgot My Password</a>
             </div>
         </div>
     );
