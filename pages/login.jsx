@@ -1,14 +1,8 @@
 // 'use client'; // Remove this line, it's not necessary
 import React from 'react';
 import styles from '../styles/login.module.css';
-
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
-
-// import { useMemo } from 'react'; // Assurez-vous que le chemin est correct
 
 const LoginPage = () => {
     const router = useRouter();
@@ -54,22 +48,31 @@ const LoginPage = () => {
 
     return (
         <div className={styles.App}>
-            <div className={styles.topSection}><h1>DOPPLECHAT</h1></div>
+            <div className={styles['top-section']}><h1>DOPPELCHAT</h1></div>
             <div className={styles['image-section']}></div>
             <div className={styles['login-section']}>
-                <h2 className={styles.heading}>Login</h2>
                 <form className={styles.form}>
-                    <label className={styles.label} htmlFor="username">Email:</label>
-                    <input className={styles.input} type="text" id="username" name="username" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <div className={styles.box}>
+                        <input className={styles.input} type="text" id="email" name="email" placeholder="EMAIL"/>
+                    </div>
 
-                    <label className={styles.label} htmlFor="password">Password:</label>
-                    <input className={styles.input} type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <div className={styles['button-container']}>
-                        <button className={styles.button} type="button" onClick={handleLogin}>Login</button>
-                        <button className={styles.button} type="submit" onClick={handleSignUpClick}>Sign Up</button>
+                    <div className={styles.box}>
+                        <input className={styles.input} type="password" id="password" name="password" placeholder="PASSWORD" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    </div>
+
+                    <div className={styles.box}>
+                        <button className={styles.button} type="button" onClick={handleLogin}>LOGIN</button>
+                    </div>
+
+                    <div className={styles.box}>
+                        <button className={styles.button} type="submit" onClick={handleSignUpClick}>REGISTER</button>
                     </div>
                 </form>
             </div>
+            <div className={styles['forgot-password']}>
+                <a href="#">Forgot My Password</a>
+            </div>
+
         </div>
     );
 }
