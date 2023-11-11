@@ -31,7 +31,7 @@ const LoginPage = () => {
             if (data.influencer) {
                 router.push('/create-clone');
             } else {
-                router.push('/feed');
+                router.push('/get-all-clones');
             }
         } else {
             // Le serveur a renvoyé une erreur
@@ -53,11 +53,11 @@ const LoginPage = () => {
             <div className={styles['login-section']}>
                 <form className={styles.form}>
                     <div className={styles.box}>
-                        <input className={styles.input} type="text" id="email" name="email" placeholder="EMAIL" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <input className={styles.input} type="text" id="email" name="email" placeholder="EMAIL" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
 
                     <div className={styles.box}>
-                        <input className={styles.input} type="password" id="password" name="password" placeholder="PASSWORD" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <input className={styles.input} type="password" id="password" name="password" placeholder="PASSWORD" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
 
                     <div className={styles.box}>

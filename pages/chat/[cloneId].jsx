@@ -29,8 +29,7 @@ const SmsChat = () => {
       setChatHistory((prevChatHistory) => [
         ...prevChatHistory,
         { role: 'user', content: userMessage },
-        { role: 'system', content: 'systemPromptHere' }, // Remplacez 'systemPromptHere' par le prompt système réel
-        { role: 'assistant', content: generatedResponse },
+        { role: 'assistant', content: generatedResponse.content },
       ]);
 
       // Effacez le champ de message utilisateur
@@ -43,12 +42,18 @@ const SmsChat = () => {
   return (
     <div>
       <div className="chat-history">
-  {chatHistory.map((message, index) => (
-    <div key={index} className={message.role}>
-      {typeof message.content === 'object' ? message.content.content : message.content}
-    </div>
-  ))}
-</div>
+        {
+          chatHistory.map((message, index) => (
+            <div key={index} className={message.role}>
+              {message.content.startsWith('https') ? (
+                <img src={message.content} alt="Image" />
+              ) : (
+                message.content
+              )}
+            </div>
+          ))
+        }
+      </div>
 
       <form onSubmit={handleSubmit}>
         <input
