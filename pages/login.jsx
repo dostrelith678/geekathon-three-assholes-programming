@@ -61,7 +61,7 @@ const LoginPage = () => {
                     </div>
 
                     <div className={styles.box}>
-                        <button className={styles.button} type="button" onClick={handleSubmit}>LOGIN</button>
+                        <button className={styles.button2} type="button" onClick={handleSubmit}>LOG IN</button>
                     </div>
 
                     <div className={styles.box}>

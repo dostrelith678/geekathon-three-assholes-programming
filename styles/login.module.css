@@ -78,7 +78,7 @@
 .button {
   width: 153px;
   height: 40px;
-  border: 2px solid rgba(133, 44, 207, 1);
+  border: black;
   border-radius: 6px;
   background-color: black;
   color: rgba(133, 44, 207, 1);
@@ -93,16 +93,33 @@
   font-family: 'Inter', serif;
 }
 
-.button:hover {
+/*.button:hover {*/
+/*  background-color: rgba(133, 44, 207, 1);*/
+/*  color: white;*/
+/*  font-weight: 600;*/
+/*  font-size: 13px;*/
+/*  line-height: 1.4;*/
+/*  letter-spacing: 1px;*/
+/*  text-decoration: none;*/
+/*  text-transform: uppercase;*/
+/*  border-radius: 6px;*/
+/*}*/
+
+.button2 {
+  width: 153px;
+  height: 40px;
+  border: 2px solid rgba(133, 44, 207, 1);
+  border-radius: 6px;
   background-color: rgba(133, 44, 207, 1);
   color: white;
-  font-weight: 600;
+  cursor: pointer;
   font-size: 13px;
+  font-weight: 600;
   line-height: 1.4;
   letter-spacing: 1px;
   text-decoration: none;
   text-transform: uppercase;
-  border-radius: 6px;
+  font-family: 'Inter', serif;
 }
 
 .forgot-password {
