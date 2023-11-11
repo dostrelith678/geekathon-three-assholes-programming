@@ -41,7 +41,9 @@ const app = express();
 const port = process.env.PORT || 3008;
 
 // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+
 app.use(cors());
 
 
@@ -83,7 +85,7 @@ app.post('/signup', async (req, res) => {
         })
 
         // Send success response
-        return res.status(201).json({ message: 'User created successfully', userId: userCredential.user.uid, influencer: userType});
+        return res.status(201).json({ message: 'User created successfully', userId: userCredential.user.uid, influencer: userType });
     } catch (error) {
         console.error('Error creating user:', error);
         return res.status(500).json({ error: 'Internal server error' });
@@ -141,26 +143,26 @@ app.post('/create-clone', async (req, res) => {
         // Store AI clone data in the Realtime Database
         const databaseRef = db.ref(`aiClones/${cloneId}`);
         await databaseRef.set({
-            pp,
-            username,
-            description,
-            firstname,
-            lastname,
-            age,
-            sex,
-            relationship,
-            jobtitle,
-            companyname,
-            background,
-            emotionnal,
-            hobby,
-            lifestyle,
-            social,
-            toddler,
-            infant,
-            skill,
-            favorite,
-            selfies
+            pp, // base64
+            username, // string
+            description, // string
+            firstname, // string
+            lastname, // string
+            age, // int
+            sex, // string
+            relationship, // string
+            jobtitle, // string
+            companyname, // string
+            background, // string
+            emotionnal, // List[string]
+            hobby, // List[string]
+            lifestyle, // List[string]
+            social, // List[string]
+            toddler, // List[string]
+            infant, // List[string]
+            skill, // List[string]
+            favorite, // string
+            selfies // List[Base64]
         });
 
         // Return success response
