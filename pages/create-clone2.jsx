@@ -85,9 +85,8 @@ const clonePage = () => {
                 <form className={styles.form}>
                     {/*description*/}
                     <div className={styles.box}>
-                        <input
-                            className={styles.input2}
-                            type="description"
+                        <textarea
+                            className={styles.textarea}
                             id="description"
                             name="description"
                             placeholder="Briefly describe your doppel"
@@ -112,10 +111,8 @@ const clonePage = () => {
                     </div>
                     {/*job title*/}
                     <div className={styles.box}>
-                        <input
-                            className={styles.input2}
+                        <textarea className={styles.textarea}
                             placeholder="Job title"
-                            type="text"
                             id="jobtitle"
                             name="jobtitle"
                             value={formData.jobtitle}
@@ -124,10 +121,8 @@ const clonePage = () => {
                     </div>
                     {/*company*/}
                     <div className={styles.box}>
-                        <input
-                            className={styles.input2}
+                        <textarea className={styles.textarea}
                             placeholder="Company"
-                            type="text"
                             id="companyname"
                             name="companyname"
                             value={formData.companyname}
@@ -136,8 +131,8 @@ const clonePage = () => {
                     </div>
                     {/*background*/}
                     <div className={styles.box}>
-                        <input style={{height: '150px'}}
-                               className={styles.input2}
+                        <textarea style={{height: '150px'}}
+                               className={styles.textarea}
                                placeholder="Background: Be as complete and detailed as possible about your background, romantic interests, tastes, social, professional, and family experiences, hobbies, aspirations, dream...etc."
                                type="description"
                                id="background"
