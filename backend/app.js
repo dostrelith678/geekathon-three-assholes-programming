@@ -46,7 +46,10 @@ app.use(cors());
 
 
 const getCloneSystemPrompt = async (cloneId) => {
-    return "Clone prompt"
+    const snapshot = await db.ref(`aiClones/${cloneId}`).once("value")
+    const cloneData = snapshot.val();
+
+    return "Make Clone prompt"
 }
 
 // Routes
@@ -121,10 +124,13 @@ app.post('/login', async (req, res) => {
 // Create an AI clone
 app.post('/create-clone', async (req, res) => {
     try {
-        const aiCloneData = req.body;
+        const { pp, username, description, firstname, lastname, age, sex, relationship,
+            jobtitle, companyname, background, emotionnal, hobby, lifestyle, social,
+            toddler, infant, skill, favorite, selfies } = req.body;
+
 
         // Validate request data (you can customize this based on your requirements)
-        if (!aiCloneData || typeof aiCloneData !== 'object') {
+        if (!username || !sex) {
             return res.status(400).json({ error: 'Invalid request body' });
         }
         // Generate a unique clone ID for the AI clone
@@ -132,7 +138,28 @@ app.post('/create-clone', async (req, res) => {
 
         // Store AI clone data in the Realtime Database
         const databaseRef = db.ref(`aiClones/${cloneId}`);
-        await databaseRef.set(aiCloneData);
+        await databaseRef.set({
+            pp,
+            username,
+            description,
+            firstname,
+            lastname,
+            age,
+            sex,
+            relationship,
+            jobtitle,
+            companyname,
+            background,
+            emotionnal,
+            hobby,
+            lifestyle,
+            social,
+            toddler,
+            infant,
+            skill,
+            favorite,
+            selfies
+        });
 
         // Return success response
         return res.status(201).json({ message: 'AI clone created successfully', cloneId });
@@ -189,8 +216,17 @@ app.post('/generate-selfie', (req, res) => {
 });
 
 // Get all clones available
-app.get('/get-all-clones', (req, res) => {
+app.get('/get-all-clones', async (req, res) => {
     // Fetch data from Firebase and send it back to the client
+    try {
+        const snapshot = await db.ref('aiClones').once("value");
+        const allClonesData = snapshot.val();
+
+        return res.status(200).json({ allClonesData });
+    } catch {
+        console.error('Error fetching AI clones data:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 // Handle PayPal payment
