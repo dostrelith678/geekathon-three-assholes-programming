@@ -50,19 +50,18 @@ app.post('/signup', async (req, res) => {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
 
         // Initiate user in Realtime Database
-
-        await db.ref('/users').set({
+        await db.ref(`/user/${userCredential.user.uid}`).set({
             username: "",
             email: email,
             emailVerification: false,
             verification: false,
             firstName: "",
             lastName: "",
-            userType: userType,
+            influencer: userType == "influencer" ? true : false,
             age: 0,
             idCard: "",
             subscription: false,
-            authority: 2
+            authority: userType == "influencer" ? 1 : 0
         })
 
 
