@@ -31,11 +31,27 @@ const clonePage = () => {
       });
     
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+      const { name, options } = e.target;
+
+      // Si l'élément est un select avec l'attribut "multiple"
+      if (options) {
+        const selectedValues = Array.from(options)
+          .filter((option) => option.selected)
+          .map((option) => option.value);
+    
+        // Mettre à jour l'état avec le tableau de valeurs
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: selectedValues,
+        }));
+      } else {
+        // Si l'élément est un champ de texte normal
+        const { value } = e.target;
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: value,
+        }));
+      }
     };
 
     const handleFileChange = (e) => {
