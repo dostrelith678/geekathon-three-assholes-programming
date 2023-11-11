@@ -13,7 +13,7 @@ const SmsChat = () => {
     e.preventDefault();
 
     // Envoyez la requête au backend pour obtenir la réponse
-    const response = await fetch('/get-chat-response', {
+    const response = await fetch('http://localhost:3008/get-chat-response', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,12 +43,13 @@ const SmsChat = () => {
   return (
     <div>
       <div className="chat-history">
-        {chatHistory.map((message, index) => (
-          <div key={index} className={message.role}>
-            {message.content}
-          </div>
-        ))}
-      </div>
+  {chatHistory.map((message, index) => (
+    <div key={index} className={message.role}>
+      {typeof message.content === 'object' ? message.content.content : message.content}
+    </div>
+  ))}
+</div>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
