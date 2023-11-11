@@ -45,7 +45,7 @@ app.post('/signup', async (req, res) => {
         const { email, password, userType } = req.body;
 
         // Validate request data
-        if (!email || !password || !userType) {
+        if (!email || !password) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
@@ -60,16 +60,15 @@ app.post('/signup', async (req, res) => {
             verification: false,
             firstName: "",
             lastName: "",
-            influencer: userType == "influencer" ? true : false,
+            influencer: userType,
             age: 0,
             idCard: "",
             subscription: false,
-            authority: userType == "influencer" ? 1 : 0
+            authority: userType == true ? 1 : 0
         })
 
-
         // Send success response
-        return res.status(201).json({ message: 'User created successfully', userId: userCredential.user.uid });
+        return res.status(201).json({ message: 'User created successfully', userId: userCredential.user.uid, influencer: userType});
     } catch (error) {
         console.error('Error creating user:', error);
         return res.status(500).json({ error: 'Internal server error' });
@@ -92,8 +91,11 @@ app.post('/login', async (req, res) => {
         // Get user information if needed
         const user = firebase.auth().currentUser;
 
+        const userSnapshot = await db.ref(`/user/${user.uid}`).once('value');
+        const userData = userSnapshot.val();
+
         // Return success response
-        return res.status(200).json({ message: 'Login successful', user: user });
+        return res.status(200).json({ message: 'Login successful', user: user, data: userData });
     } catch (error) {
         console.error('Error during login:', error);
 

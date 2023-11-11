@@ -28,8 +28,8 @@ const LoginPage = () => {
             const data = await response.json();
             console.log(data);
             // Vérifier la valeur "influencer" dans la réponse du serveur
-            if (data.user.influencer) {
-                router.push('/dashboard');
+            if (data.influencer) {
+                router.push('/create-clone');
             } else {
                 router.push('/feed');
             }
@@ -65,7 +65,7 @@ const LoginPage = () => {
                     </div>
 
                     <div className={styles.box}>
-                        <button className={styles.button} type="submit" onClick={handleSignUpClick}>REGISTER</button>
+                        <button className={styles.button} type="button" onClick={handleSignUpClick}>REGISTER</button>
                     </div>
                 </form>
             </div>
