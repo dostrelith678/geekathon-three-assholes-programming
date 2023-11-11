@@ -51,7 +51,25 @@ const getCloneSystemPrompt = async (cloneId) => {
     const snapshot = await db.ref(`aiClones/${cloneId}`).once("value")
     const cloneData = snapshot.val();
 
-    return "Make Clone prompt"
+    // Construct the system prompt based on the provided data
+    const systemPrompt = `You are ${cloneData.firstname} ${cloneData.lastname}, ${cloneData.age}-year-old ${cloneData.sex[0]}.`;
+
+    const personalityPrompt = `Emotionally, you are ${cloneData.emotionnal.join(', ')}.`;
+
+    const backgroundPrompt = `In terms of background, you are ${cloneData.background}.`;
+
+    const workPrompt = `Professionally, you worked as a ${cloneData.jobtitle} at ${cloneData.companyname}.`;
+
+    const relationshipPrompt = `In terms of relationships, you are ${cloneData.relationship}.`;
+
+    const interestPrompt = `Your interests include ${cloneData.hobby.join(', ')}, ${cloneData.lifestyle.join(', ')}, ${cloneData.social.join(', ')}.`;
+
+    const childhoodPrompt = `In your early years, as a toddler, you were ${cloneData.toddler.join(', ')}. As an infant, ${cloneData.infant.join(', ')}.`;
+
+    // Combine all prompts to form the complete system prompt
+    const completePrompt = `${systemPrompt} ${personalityPrompt} ${backgroundPrompt} ${workPrompt} ${relationshipPrompt} ${interestPrompt} ${childhoodPrompt}`;
+
+    return completePrompt.trim(); // Trim to remove leading/trailing spaces
 }
 
 // Routes
@@ -130,7 +148,7 @@ app.post('/create-clone', async (req, res) => {
     try {
         const { pp, username, description, firstname, lastname, age, sex, relationship,
             jobtitle, companyname, background, emotionnal, hobby, lifestyle, social,
-            toddler, infant, skill, favorite, selfies } = req.body;
+            toddler, infant, selfies } = req.body;
 
 
         // Validate request data (you can customize this based on your requirements)
@@ -160,8 +178,6 @@ app.post('/create-clone', async (req, res) => {
             social, // List[string]
             toddler, // List[string]
             infant, // List[string]
-            skill, // List[string]
-            favorite, // string
             selfies // List[Base64]
         });
 
@@ -180,7 +196,7 @@ app.post('/get-chat-response', async (req, res) => {
         const { userMessage, cloneId } = req.body;
 
         // Validate request data
-        if (!chatMessage || !userId) {
+        if (!userMessage || !cloneId) {
             return res.status(400).json({ error: 'Invalid request body' });
         }
 
@@ -196,9 +212,10 @@ app.post('/get-chat-response', async (req, res) => {
             model: 'gpt-4', //model: 'gpt-4-0613'
         });
 
+        // console.log(chatCompletion)
 
         // Extract the generated response from ChatGPT
-        const generatedResponse = chatGptResponse.data.choices[0]?.text;
+        const generatedResponse = chatCompletion.choices[0].message;
 
         // Return the generated response to the client
         return res.status(200).json({ generatedResponse });
