@@ -247,7 +247,6 @@ app.post('/get-chat-response', async (req, res) => {
                 console.error('Error:', error.message);
             }
         } else {
-            console.log(chatHistory)
             // Make request to ChatGPT 4.0
             const chatCompletion = await openai.chat.completions.create({
                 messages: [
