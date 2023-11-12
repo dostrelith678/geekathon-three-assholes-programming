@@ -250,12 +250,13 @@ input:checked + .slider::before {
   align-items: center;
   margin-top: 16px;
   padding-bottom: 16px;
+  padding-top: 16px;
   margin: auto;
 }
 
 .chatPhoto {
   height:auto;
-  width:160px;
+  width:100%;
 }
 
 .user {
@@ -296,6 +297,7 @@ input:checked + .slider::before {
 .chatInput {
   flex-grow: 1;
   padding: 8px;
+  color: white;
   border: 0px solid #ccc;
   background-color: #40414f;
   border-radius: 8px;
