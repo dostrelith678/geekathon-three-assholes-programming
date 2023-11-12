@@ -176,7 +176,7 @@ app.post('/create-clone', async (req, res) => {
             jobtitle, // string
             companyname, // string
             background, // string
-            emotional, // List[string]
+            emotionnal, // List[string]
             hobby, // List[string]
             lifestyle, // List[string]
             social, // List[string]
