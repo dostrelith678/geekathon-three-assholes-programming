@@ -2,7 +2,8 @@
 # DoppelChat
 
 ## Video Demo
-Available at: https://we.tl/t-G9wZS1Ha3c
+Available at: [https://we.tl/t-G9wZS1Ha3c](https://we.tl/t-rifPZZgy69)
+<!-- Available at: https://we.tl/t-G9wZS1Ha3c -->
 
 ## Description
 
