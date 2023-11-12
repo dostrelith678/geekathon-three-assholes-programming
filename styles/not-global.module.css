@@ -3,6 +3,8 @@
 /* Base Styles */
 .body {
   align-items: center;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+  scrollbar-width: thin;
 }
 
 .App {
@@ -11,7 +13,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   height: 100vh;
-  background-color: rgba(133, 44, 207, 1);
+  background-color: rgb(72, 191, 255);
 }
 
 /* Image Section */
@@ -29,7 +31,7 @@
 
 .top-section h1 {
   font-weight: 900;
-  color: rgba(133, 44, 207, 1);
+  color: rgb(72, 191, 255);
 }
 
 /* Login Section */
@@ -65,7 +67,7 @@
 .textarea {
   width: 300px;
   height: 60px;
-  border: 2px solid rgba(133, 44, 207, 1);
+  border: 2px solid rgb(72, 191, 255);
   border-radius: 6px;
   background-color: black;
   color: white;
@@ -77,14 +79,14 @@
 .input::placeholder,
 .input2::placeholder,
 .select::placeholder {
-  color: rgba(133, 44, 207, 1);
-  font-size: 13px;
+  color: rgb(72, 191, 255);
+  font-size: 11px;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 1px;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 8px;
+  left: 8px;
   white-space: normal;
   text-align: justify;
 }
@@ -108,13 +110,13 @@
 .button {
   border: black;
   background-color: black;
-  color: rgba(133, 44, 207, 1);
+  color: rgb(72, 191, 255);
   transition: background-color 0.3s;
 }
 
 .button2 {
-  border: 2px solid rgba(133, 44, 207, 1);
-  background-color: rgba(133, 44, 207, 1);
+  border: 2px solid rgb(72, 191, 255);
+  background-color: rgb(72, 191, 255);
   color: white;
 }
 
@@ -127,7 +129,7 @@
 
 .forgot-password a {
   text-decoration: none;
-  color: rgba(133, 44, 207, 1);
+  color: rgb(72, 191, 255);
   cursor: pointer;
   text-transform: lowercase;
   font-size: 9px;
@@ -176,7 +178,7 @@
 }
 
 input:checked + .slider {
-  background-color: rgba(133, 44, 207, 1);
+  background-color: rgb(72, 191, 255);
 }
 
 input:checked + .slider::before {
@@ -188,7 +190,7 @@ input:checked + .slider::before {
   display: inline-block;
   margin-right: 60px;
   line-height: 24px;
-  color: rgba(133, 44, 207, 1);
+  color: rgb(72, 191, 255);
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 1px;
@@ -220,7 +222,7 @@ input:checked + .slider::before {
 /* Top Section 2 */
 .top-section2 {
   text-align: center;
-  background-color: rgba(133, 44, 207, 1);
+  background-color: rgb(72, 191, 255);
   color: black;
   font-weight: 900;
   height: 10vh;

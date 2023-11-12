@@ -133,16 +133,24 @@ const clonePage = () => {
       <div className={styles['top-section2']}>
         <h1>DOPPELCHAT</h1>
       </div>
-      <div className={styles['profile-info']}>
-        <img
-          className={styles['profile-image']}
-          src="https://i.pinimg.com/736x/58/7b/57/587b57f888b1cdcc0e895cbdcfde1c1e.jpg"
-          alt="Profile"
-        />
-        <p className={styles['twitter-handle']}>@DucksAreAwesome</p>
-      </div>
       <div className={styles['login-section']}>
         <form className={styles.form}>
+            <label htmlFor="pp">Upload a Profile Picture:</label>
+            <input
+              type="file"
+              id="pp"
+              name="pp"
+              onChange={handleFileChange}
+            />
+
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
           {/*description*/}
           <div className={styles.box}>
             <textarea
@@ -375,6 +383,16 @@ const clonePage = () => {
               <option value="sociallyawkward">Socially Awkward</option>
             </select>
           </div>
+
+          <label htmlFor="selfies">Upload up to 7 selfies:</label>
+            <input
+              type="file"
+              id="selfies"
+              name="selfies"
+              onChange={handleFileChange}
+              multiple
+            />
+
           <div className={styles.box}>
             <button className={styles.button} type="button" onClick={handleSubmit}>CREATE</button>
           </div>
