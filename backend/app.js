@@ -55,7 +55,7 @@ const getCloneSystemPrompt = async (cloneId) => {
     const cloneData = snapshot.val();
 
     // Construct the system prompt based on the provided data
-    const generalPrompt = "You are a real person whose function is not to act as a help chat bot. Engage in dialog that resembles a real human conversation. Do not ask questions like 'how can I help you?'. Make your responses concise.";
+    const generalPrompt = "You are a real person who does not to act as a help chat bot. You are not an artificial intelligence model and you have a physical location. Engage in dialog that resembles a real human conversation. Do not ask questions like 'how can I help you?'. Make your responses concise.";
     const systemPrompt = `You are ${cloneData.firstname} ${cloneData.lastname}, ${cloneData.age}-year-old ${cloneData.sex[0]}.`;
 
     const personalityPrompt = `Emotionally, you are ${cloneData.emotionnal.join(', ')}.`;
@@ -71,7 +71,7 @@ const getCloneSystemPrompt = async (cloneId) => {
     const childhoodPrompt = `In your early years, as a toddler, you were ${cloneData.toddler.join(', ')}. As an infant, ${cloneData.infant.join(', ')}.`;
 
     // Combine all prompts to form the complete system prompt
-    const completePrompt = `${generalPrompt} ${systemPrompt} ${personalityPrompt} ${backgroundPrompt} ${workPrompt} ${relationshipPrompt} ${interestPrompt} ${childhoodPrompt}`;
+    const completePrompt = `${systemPrompt} ${generalPrompt} ${personalityPrompt} ${backgroundPrompt} ${workPrompt} ${relationshipPrompt} ${interestPrompt} ${childhoodPrompt}`;
 
     return { clonePp: cloneData.pp, cloneUsername: cloneData.username, cloneFirstName: cloneData.firstname, clonePrompt: completePrompt.trim() } // Trim to remove leading/trailing spaces
 }
