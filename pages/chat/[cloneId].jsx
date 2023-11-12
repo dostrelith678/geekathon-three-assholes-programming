@@ -38,14 +38,28 @@ const SmsChat = () => {
     if (response.ok) {
       const data = await response.json();
       const generatedResponse = data.generatedResponse;
+      const generatedImageUrl = data.generatedImageUrl;
       setFirstname(data.cloneFirstName);
       setPP(data.clonePp);
-      console.log(pp)
       // Mettez à jour l'historique du chat avec la réponse générée
+
+      let newChatHistory;
+      if (generatedImageUrl) {
+        newChatHistory = [
+          { role: 'user', content: userMessage },
+          { role: 'assistant', content: generatedResponse.content },
+          { role: 'assistant', content: generatedImageUrl }
+        ]
+      } else {
+        newChatHistory = [
+          { role: 'user', content: userMessage },
+          { role: 'assistant', content: generatedResponse.content },
+        ]
+      }
+
       setChatHistory((prevChatHistory) => [
         ...prevChatHistory,
-        { role: 'user', content: userMessage },
-        { role: 'assistant', content: generatedResponse.content },
+        ...newChatHistory
       ]);
 
       // Effacez le champ de message utilisateur
@@ -79,16 +93,16 @@ const SmsChat = () => {
         </div>
 
         <div className={styles.chatInputContainer}>
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <textarea
-            className={styles.chatInput}
-            ref={textareaRef}
-            type="textarea"
-            value={userMessage}
-            onChange={(e) => setUserMessage(e.target.value)}
-          />
-          <button className={`${styles.sendButton} ${styles.chatButton}`} type="submit">Send</button>
-        </form>
+          <form className={styles.formContainer} onSubmit={handleSubmit}>
+            <textarea
+              className={styles.chatInput}
+              ref={textareaRef}
+              type="textarea"
+              value={userMessage}
+              onChange={(e) => setUserMessage(e.target.value)}
+            />
+            <button className={`${styles.sendButton} ${styles.chatButton}`} type="submit">Send</button>
+          </form>
         </div>
       </div>
     </div>
