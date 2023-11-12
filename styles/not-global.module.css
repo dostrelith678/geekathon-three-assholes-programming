@@ -351,6 +351,49 @@ input:checked + .slider::before {
   align-self: center;
 }
 
-.send-button:hover {
-  background-color: #45a049;
+.fileInputContainer {
+  position: relative;
+  text-align: center;
+}
+
+.fileLabel {
+  width: 128px;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px solid rgb(62, 165, 239);
+  border-radius: 50%;
+}
+
+.fileLabel:hover {
+  background-color: rgb(62, 165, 239);
+}
+
+.filePreview {
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.filePreview img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.fileLabel span {
+  margin-top: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.imagesContainer {
+  display: flex;
+  gap: 16px; /* Ajustez selon l'espacement souhaité */
 }

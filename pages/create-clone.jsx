@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 
 const clonePage = () => {
   const router = useRouter();
+  const [file, setFile] = useState(null);
   const [formData, setFormData] = useState({
     pp: [],
     username: '',
@@ -25,8 +26,6 @@ const clonePage = () => {
     social: [],
     toddler: [],
     infant: [],
-    skill: [],
-    favorite: '',
     selfies: []
   });
 
@@ -59,15 +58,20 @@ const clonePage = () => {
     // Vérifier si le champ est pp ou selfies
     if (name === 'pp' || name === 'selfies') {
       if (files && files.length > 0 && files[0]) {
-        // Assurer que files[0] est un objet Blob
-        const fileBlob = new Blob([files[0]], { type: files[0].type });
+        const filesArray = Array.from(files);
 
-        // Convertir l'image en base64
-        const base64Image = await convertImageToBase64(fileBlob);
-
+        // Convertir les images en base64
+        const base64Images = await Promise.all(
+          filesArray.map(async (file) => {
+            const fileBlob = new Blob([file], { type: file.type });
+            return await convertImageToBase64(fileBlob);
+          })
+        );
+  
+        setFile(base64Images[0]); // Mise à jour pour gérer la prévisualisation du premier fichier
         setFormData((prevFormData) => ({
           ...prevFormData,
-          [name]: base64Image,
+          [name]: base64Images,
         }));
       } else {
         console.error('Aucun fichier sélectionné.');
@@ -135,22 +139,35 @@ const clonePage = () => {
       </div>
       <div className={styles['login-section']}>
         <form className={styles.form}>
-            <label htmlFor="pp">Upload a Profile Picture:</label>
-            <input
-              type="file"
-              id="pp"
-              name="pp"
-              onChange={handleFileChange}
-            />
+            <div className={styles.box}>
+              <div className={styles.fileInputContainer}>
+              <label htmlFor="pp" className={styles.fileLabel}>
+                <div className={styles.filePreview}>
+                  {file && <img src={file} alt="Preview" />}
+                </div>
+              </label>
+              <input
+                type="file"
+                id="pp"
+                name="pp"
+                onChange={handleFileChange}
+                className={styles.hidden}
+              />
+              <span>Choose a file</span>
+            </div>
+            </div>
 
-            <label htmlFor="username">Username:</label>
+            <div className={styles.box}>
             <input
+              className={styles.textarea}
+              placeholder="Username"
               type="text"
               id="username"
               name="username"
               value={formData.username}
               onChange={handleChange}
             />
+            </div>
           {/*description*/}
           <div className={styles.box}>
             <textarea
@@ -384,14 +401,29 @@ const clonePage = () => {
             </select>
           </div>
 
-          <label htmlFor="selfies">Upload up to 7 selfies:</label>
-            <input
-              type="file"
-              id="selfies"
-              name="selfies"
-              onChange={handleFileChange}
-              multiple
-            />
+
+          <div className={styles.box}>
+            <div className={styles.fileInputContainer}>
+              <label htmlFor="selfies" className={styles.fileLabel}>
+                <div className={styles.imagesContainer}>
+                  {formData.selfies.map((image, index) => (
+                    <div key={index} className={styles.filePreview}>
+                      <img src={image} alt={`Preview ${index + 1}`} />
+                    </div>
+                  ))}
+                </div>
+              </label>
+              <input
+                type="file"
+                id="selfies"
+                name="selfies"
+                onChange={handleFileChange}
+                multiple
+                className={styles.hidden}
+              />
+              <span>Upload up to 7 selfies</span>
+            </div>
+          </div>
 
           <div className={styles.box}>
             <button className={styles.button} type="button" onClick={handleSubmit}>CREATE</button>
