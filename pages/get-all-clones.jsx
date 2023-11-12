@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import styles from '../styles/not-global.module.css';
 
 const FeedPage = () => {
   const router = useRouter();
@@ -44,15 +45,15 @@ const FeedPage = () => {
   };
 
   return (
-    <div>
-      <h1>Feed</h1>
-      <div>
+    <div className={styles.App}>
+      <div className={styles['top-section']}><img className={styles.logo} src="doppelchat_1.png" alt="logo" /></div>
+      <div className={styles.feed}>
         {userList.map((user) => (
-          <div key={user.id}>
+          <div className={styles.userCard} key={user.id}>
             <img src={user.pp} alt={`${user.username}'s profile`} />
             <p>{user.username}</p>
             <p>{user.description}</p>
-            <button onClick={() => handleChatButtonClick(user.id)}>Chat with me</button>
+            <button className={styles.button} onClick={() => handleChatButtonClick(user.id)}>Chat with me</button>
           </div>
         ))}
       </div>

@@ -71,8 +71,10 @@ const SmsChat = () => {
 
   return (
     <div className={styles.App}>
+      <div className={styles['top-section']}><img className={styles.logo} src="../doppelchat_1.png" alt="logo" /></div>
       <div className={styles.chatContainer}>
         <div className={styles.chatHistory}>
+        <div className={styles.chatBubble}>
           {
             chatHistory.map((message, index) => (
               <div key={index} className={styles[message.role]}>
@@ -90,6 +92,7 @@ const SmsChat = () => {
               </div>
             ))
           }
+          </div>
         </div>
 
         <div className={styles.chatInputContainer}>

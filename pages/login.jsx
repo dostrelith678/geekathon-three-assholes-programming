@@ -48,7 +48,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles.App}>
-            <div className={styles['top-section']}><h1>DOPPELCHAT</h1></div>
+            <div className={styles['top-section']}><img className={styles.logo} src="doppelchat_1.png" alt="logo" /></div>
             <div className={styles['image-section']}></div>
             <div className={styles['login-section']}>
                 <form className={styles.form}>

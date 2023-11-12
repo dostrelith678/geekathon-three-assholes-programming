@@ -13,7 +13,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   height: 100vh;
-  background-color: rgb(72, 191, 255);
+  background-color: rgb(24, 24, 32);
 }
 
 /* Image Section */
@@ -25,8 +25,12 @@
 
 /* Top Section */
 .top-section {
-  text-align: center;
-  background-color: black;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(24, 24, 32);
 }
 
 .top-section h1 {
@@ -42,7 +46,7 @@
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: black;
+  background-color:rgb(24, 24, 32);
   height: auto;
 }
 
@@ -74,6 +78,7 @@
   padding: 20px; /* Adjust padding as needed */
   box-sizing: border-box;
   position: relative;
+  background-color: rgba(255, 0, 0, 0); /* Rouge avec une opacité de 0.5 */
 }
 
 .input::placeholder,
@@ -105,25 +110,26 @@
   text-decoration: none;
   text-transform: uppercase;
   font-family: 'Inter', serif;
+  border: 0px;
 }
 
 .button {
-  border: black;
-  background-color: black;
-  color: rgb(72, 191, 255);
+  border: 0px;
+  background: linear-gradient(-145deg, rgb(240, 45, 255), rgb(70, 184, 255));
+  color: white;
   transition: background-color 0.3s;
 }
 
 .button2 {
   border: 2px solid rgb(72, 191, 255);
-  background-color: rgb(72, 191, 255);
+  background-color: rgba(255, 0, 0, 0); /* Rouge avec une opacité de 0.5 */
   color: white;
 }
 
 /* Forgot Password Section */
 .forgot-password {
   text-align: center;
-  background-color: black;
+  background-color: #181820;
   padding: 5%;
 }
 
@@ -222,7 +228,7 @@ input:checked + .slider::before {
 /* Top Section 2 */
 .top-section2 {
   text-align: center;
-  background-color: rgb(72, 191, 255);
+  background-color: rgb(24, 24, 32);
   color: black;
   font-weight: 900;
   height: 10vh;
@@ -234,22 +240,31 @@ input:checked + .slider::before {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end; /* Pour aligner les bulles en bas du conteneur */
   overflow-wrap: break-word;
   word-wrap: break-word;
+  overflow-y: auto; /* Ajoutez ceci pour permettre le défilement vertical */
 }
 
 .chatHistory {
+  overflow-y: auto; /* Ajoutez ceci pour permettre le défilement vertical */
   flex-grow: 1;
-  overflow-y: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
   padding: 16px;
+}
+
+.chatBubble {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Pour aligner les bulles en bas du conteneur */
 }
 
 .chatInputContainer {
   display: flex;
   gap: 16px; /* Ajoutez une gouttière de 8 pixels entre les éléments enfants */
   align-items: center;
+  justify-content: center;
   margin-top: 16px;
   padding-bottom: 16px;
   padding-top: 16px;
@@ -259,16 +274,19 @@ input:checked + .slider::before {
 .chatPhoto {
   height:auto;
   width:100%;
+  border-radius: 8px;
 }
 
 .user {
-  width: calc(50% - 16px); /* Half of the screen width */
+  align-self: flex-end; /* Pour aligner la bulle à droite */
+  width: auto;
+  max-width: calc(50% - 16px); /* Half of the screen width */
   margin-left: 50%; /* Push to the right */
   margin-top: 16px;
   margin-bottom: 16px;
   padding: 8px;
-  background-color: #f8f8f8; /* White background */
-  border-radius: 16px;
+  background-color: rgb(255, 255, 255); /* White background */
+  border-radius: 8px;
   box-shadow: -8px 10px 23px 0px rgba(0,0,0,0.09);
   -webkit-box-shadow: -8px 10px 23px 0px rgba(0,0,0,0.09);
   -moz-box-shadow: -8px 10px 23px 0px rgba(0,0,0,0.09);
@@ -285,23 +303,26 @@ input:checked + .slider::before {
 
 /* Styles for assistant messages */
 .assistant {
+  align-self: flex-start; /* Pour aligner la bulle à gauche */
+  color: white;
   width: calc(50% - 16px); /* Half of the screen width */
   margin-top: 16px;
   margin-bottom: 16px;
   padding: 8px;
-  background-color: #e2c1ff; /* White background */
-  border-radius: 16px;
+  background: linear-gradient(-145deg, rgb(240, 45, 255), rgb(70, 184, 255));
+  border-radius: 8px;
   box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.09);
   -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.09);
   -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.09);
 }
 
 .chatInput {
+  width: 100%;
   flex-grow: 1;
   padding: 8px;
-  color: white;
+  color: black;
   border: 0px solid #ccc;
-  background-color: #40414f;
+  background-color: rgb(255, 255, 255);
   border-radius: 8px;
   resize: none;
   height: auto;
@@ -315,10 +336,11 @@ input:checked + .slider::before {
 
 .sendButton {
   margin-left: 8px; /* Ajoutez une marge de 8 pixels à gauche du bouton */
-  /* Ajoutez des styles supplémentaires au besoin */
+  background: linear-gradient(-145deg, rgb(240, 45, 255), rgb(70, 184, 255));
 }
 
 .chatAssistantInfo {
+  color: white;
   display: flex;
   text-align: center;
   justify-content: left;
@@ -328,6 +350,7 @@ input:checked + .slider::before {
 .formContainer {
   display: flex;
   align-items: center;
+  width:90vw;
 }
 
 .chatPP {
@@ -360,6 +383,7 @@ input:checked + .slider::before {
   width: 128px;
   height: 128px;
   display: flex;
+  margin-bottom: 8px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -396,4 +420,41 @@ input:checked + .slider::before {
 .imagesContainer {
   display: flex;
   gap: 16px; /* Ajustez selon l'espacement souhaité */
+}
+
+.feed {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.userCard {
+  position: relative;
+  width: 180px;
+  height: auto;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, rgba(63, 169, 245, 1) 0%,rgba(63, 169, 245, 0) 100%);
+  border: 0.5px solid rgba(63, 169, 245, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  padding: 26px 16px 26px 16px;
+  flex-wrap: nowrap;
+  text-align: center;
+  color: white;
+  margin-bottom: 48px;
+}
+
+.userCard img {
+  width: 160px;
+  height: 204px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.logo {
+  width: 256px;
 }

@@ -134,9 +134,7 @@ const clonePage = () => {
 
   return (
     <div className={styles.App}>
-      <div className={styles['top-section2']}>
-        <h1>DOPPELCHAT</h1>
-      </div>
+      <div className={styles['top-section']}><img className={styles.logo} src="doppelchat_1.png" alt="logo" /></div>
       <div className={styles['login-section']}>
         <form className={styles.form}>
             <div className={styles.box}>
