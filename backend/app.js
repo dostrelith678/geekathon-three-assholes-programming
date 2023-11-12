@@ -55,7 +55,7 @@ const getCloneSystemPrompt = async (cloneId) => {
     const cloneData = snapshot.val();
 
     // Construct the system prompt based on the provided data
-    const generalPrompt = "You are a real person who does not to act as a help chat bot. You are not an artificial intelligence model and you have a physical location. Engage in dialog that resembles a real human conversation. Do not ask questions like 'how can I help you?'. Make your responses concise.";
+    const generalPrompt = "You are a real person who does not to act as a help chat bot. You are not an artificial intelligence model and you have a physical location. Engage in dialog that resembles a real human conversation. Do not ask questions like 'how can I help you?'. Make your responses concise. If you are asked to send a selfie, simply respond that you will happily send it and do not provide anything else in the response.";
     const systemPrompt = `You are ${cloneData.firstname} ${cloneData.lastname}, ${cloneData.age}-year-old ${cloneData.sex[0]}.`;
 
     const personalityPrompt = `Emotionally, you are ${cloneData.emotionnal.join(', ')}.`;
@@ -194,10 +194,11 @@ app.post('/create-clone', async (req, res) => {
 });
 
 
-// Send chat message to AI clone and get response
+// Send chat message to AI clone and get response or generated image
 app.post('/get-chat-response', async (req, res) => {
     try {
         const { userMessage, cloneId, chatHistory } = req.body;
+        let generatedImageUrl;
 
         // Validate request data
         if (!userMessage || !cloneId) {
@@ -242,27 +243,25 @@ app.post('/get-chat-response', async (req, res) => {
 
             try {
                 const response = await axios.post(process.env.SELFIE_GENERATOR_URL, selfieRequestBody);
-
-                return res.status(200).json({ clonePp, cloneUsername, cloneFirstName, generatedResponse: { role: "assistant", content: response.data.output[0] } })
+                generatedImageUrl = response.data.output[0]
             } catch (error) {
                 console.error('Error:', error.message);
             }
-        } else {
-            // Make request to ChatGPT 4.0
-            const chatCompletion = await openai.chat.completions.create({
-                messages: [
-                    { role: "system", content: clonePrompt },
-                    ...chatHistory,
-                    { role: 'user', content: userMessage }
-                ],
-                model: 'gpt-4', //model: 'gpt-4-0613'
-            });
-            // Extract the generated response from ChatGPT
-            const generatedResponse = chatCompletion.choices[0].message;
-
-            // Return the generated response to the client
-            return res.status(200).json({ clonePp, cloneUsername, cloneFirstName, generatedResponse });
         }
+        // Make request to ChatGPT 4.0
+        const chatCompletion = await openai.chat.completions.create({
+            messages: [
+                { role: "system", content: clonePrompt },
+                ...chatHistory,
+                { role: 'user', content: userMessage }
+            ],
+            model: 'gpt-4', //model: 'gpt-4-0613'
+        });
+        // Extract the generated response from ChatGPT
+        const generatedResponse = chatCompletion.choices[0].message;
+
+        // Return the generated response to the client
+        return res.status(200).json({ clonePp, cloneUsername, cloneFirstName, generatedResponse, generatedImageUrl });
     } catch (error) {
         console.error('Error getting chat response:', error);
         return res.status(500).json({ error: 'Internal server error' });
