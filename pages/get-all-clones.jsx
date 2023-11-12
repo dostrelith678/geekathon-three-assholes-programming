@@ -54,8 +54,9 @@ const GetAllClonesPage = () => {
                     <p className={styles['profile-description']}>{user.description}</p>
                 </div>
 
-                <button className={`${styles['chat-button']} ${styles['profile-chat-button']}`} onClick={() => handleChatButtonClick(user.id)}>
-                  Chat Now
+                <button className={`${styles['chat-button']} ${styles['profile-chat-button']}`}
+                        onClick={() => handleChatButtonClick(user.id)}>
+                  CHAT NOW
                 </button>
               </div>
           ))}
