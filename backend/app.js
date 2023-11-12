@@ -55,7 +55,8 @@ const getCloneSystemPrompt = async (cloneId) => {
     const cloneData = snapshot.val();
 
     // Construct the system prompt based on the provided data
-    const systemPrompt = `You are ${cloneData.firstname} ${cloneData.lastname}, ${cloneData.age}-year-old ${cloneData.sex[0]}. Do not respond like a chatbot, instead respond as this real person.`;
+    const generalPrompt = "You are a real person whose function is not to act as a help chat bot. Engage in dialog that resembles a real human conversation. Do not ask questions like 'how can I help you?'. Make your responses concise.";
+    const systemPrompt = `You are ${cloneData.firstname} ${cloneData.lastname}, ${cloneData.age}-year-old ${cloneData.sex[0]}.`;
 
     const personalityPrompt = `Emotionally, you are ${cloneData.emotionnal.join(', ')}.`;
 
@@ -70,7 +71,7 @@ const getCloneSystemPrompt = async (cloneId) => {
     const childhoodPrompt = `In your early years, as a toddler, you were ${cloneData.toddler.join(', ')}. As an infant, ${cloneData.infant.join(', ')}.`;
 
     // Combine all prompts to form the complete system prompt
-    const completePrompt = `${systemPrompt} ${personalityPrompt} ${backgroundPrompt} ${workPrompt} ${relationshipPrompt} ${interestPrompt} ${childhoodPrompt}`;
+    const completePrompt = `${generalPrompt} ${systemPrompt} ${personalityPrompt} ${backgroundPrompt} ${workPrompt} ${relationshipPrompt} ${interestPrompt} ${childhoodPrompt}`;
 
     return { cloneUsername: cloneData.username, cloneFirstName: cloneData.firstname, clonePrompt: completePrompt.trim() } // Trim to remove leading/trailing spaces
 }
@@ -154,7 +155,7 @@ app.post('/create-clone', async (req, res) => {
             toddler, infant, selfies } = req.body;
 
 
-        // Validate request data (you can customize this based on your requirements)
+        // Validate request data (you can customize t`his based on your requirements)
         // if (!username || !sex) {
         //     return res.status(400).json({ error: 'Invalid request body' });
         // }
@@ -181,7 +182,7 @@ app.post('/create-clone', async (req, res) => {
             social, // List[string]
             toddler, // List[string]
             infant, // List[string]
-            selfies // List[Base64]
+            selfies // List[base64]
         });
 
         // Return success response
@@ -196,7 +197,7 @@ app.post('/create-clone', async (req, res) => {
 // Send chat message to AI clone and get response
 app.post('/get-chat-response', async (req, res) => {
     try {
-        const { userMessage, cloneId } = req.body;
+        const { userMessage, cloneId, chatHistory } = req.body;
 
         // Validate request data
         if (!userMessage || !cloneId) {
@@ -250,6 +251,7 @@ app.post('/get-chat-response', async (req, res) => {
             const chatCompletion = await openai.chat.completions.create({
                 messages: [
                     { role: "system", content: clonePrompt },
+                    ...chatHistory,
                     { role: 'user', content: userMessage }
                 ],
                 model: 'gpt-4', //model: 'gpt-4-0613'
@@ -266,7 +268,7 @@ app.post('/get-chat-response', async (req, res) => {
     }
 });
 
-// Train selfie model - takes too long to demo
+// Train selfie model - takes too long to demo, so we have two models prepared
 app.post('/selfie-training', (req, res) => {
     // crop images to 512x512
     // realistic-vision-v51 <- model_id
