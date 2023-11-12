@@ -215,7 +215,7 @@ app.post('/get-chat-response', async (req, res) => {
 
             if (cloneId == "-NizUL3wsBVBA-NUZOnM") { // Arnold
                 modelId = process.env.ARNOLD_MODEL_ID
-            } else if (cloneId == "-Nj-U4exXBU94ekoEPW5") { // Selma 
+            } else if (cloneId == "-Nj-U4exXBU94ekoEPW5") { // Salma 
                 modelId = process.env.SELMA_MODEL_ID
             } else {
                 return res.status(200).json({ cloneUsername, cloneFirstName, generatedResponse: { role: "assistant", message: "No, I can't send you a selfie right now!" } })
