@@ -5,6 +5,19 @@
   align-items: center;
 }
 
+.top-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 40px; /* Ajuste conforme necessário */
+  height: 40px; /* Ajuste conforme necessário */
+  margin-right: 10px; /* Espaço entre a imagem e o texto */
+}
+
+
 .App {
   display: flex;
   flex-direction: column;
@@ -13,6 +26,33 @@
   height: 100vh; /* Set a fixed height for the container, in this case, 100% of the viewport height */
   background-color: rgba(133, 44, 207, 1);
 }
+/* ... (estilos anteriores) */
+
+.footer-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; /* Ajuste conforme necessário */
+}
+
+.footerIcon {
+  width: 30px; /* Ajuste conforme necessário */
+  height: 30px; /* Ajuste conforme necessário */
+  margin-right: 10px; /* Ajuste conforme necessário */
+}
+
+/* ... (outros estilos) */
+
+.footer {
+  background-color: #333; /* Cor de fundo do footer */
+  color: white; /* Cor do texto no footer */
+  padding: 20px; /* Espaçamento interno do footer */
+  text-align: center; /* Centraliza o texto no footer */
+  position: fixed; /* Fixa o footer na parte inferior da página */
+  width: 100%; /* Largura total do footer */
+  bottom: 0; /* Alinha o footer na parte inferior da página */
+}
+
 
 .image-section {
   flex: 1;
@@ -114,7 +154,7 @@
 .forgot-password {
   text-align: center;
   background-color: black;
-  padding: 5%;
+  padding: 1%;
 }
 
 .forgot-password a {

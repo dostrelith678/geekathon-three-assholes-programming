@@ -48,7 +48,10 @@ const LoginPage = () => {
 
     return (
         <div className={styles.App}>
-            <div className={styles['top-section']}><h1>DOPPELCHAT</h1></div>
+            <div className={styles['top-section']}>
+                <img src="/dobble-chat_2.png" alt="Ícone" className={styles.icon} />
+                <h1 className={styles.title}>DOPPELCHAT</h1>
+            </div>
             <div className={styles['image-section']}></div>
             <div className={styles['login-section']}>
                 <form className={styles.form}>
@@ -67,14 +70,19 @@ const LoginPage = () => {
                     <div className={styles.box}>
                         <button className={styles.button} type="button" onClick={handleSignUpClick}>REGISTER</button>
                     </div>
+                    <div className={styles['forgot-password']}>
+                        <a href="#">Forgot My Password</a>
+                    </div>
                 </form>
             </div>
-            <div className={styles['forgot-password']}>
-                <a href="#">Forgot My Password</a>
+            <div className={styles['footer-section']}>
+                <img src="/dobble-chat(1).png" alt="Ícone Footer" className={styles.footerIcon} />
+                <p>&copy; 2023 DOPPELCHAT</p>
             </div>
+    </div>
 
-        </div>
-    );
+
+);
 }
 
 export default LoginPage;

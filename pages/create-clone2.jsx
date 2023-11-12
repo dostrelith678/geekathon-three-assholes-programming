@@ -326,6 +326,10 @@ const clonePage = () => {
                     </div>
                 </form>
             </div>
+            <div className={styles['footer-section']}>
+                <img src="/dobble-chat(1).png" alt="Ícone Footer" className={styles.footerIcon} />
+                <p>&copy; 2023 DOPPELCHAT</p>
+            </div>
         </div>
     );
 }
