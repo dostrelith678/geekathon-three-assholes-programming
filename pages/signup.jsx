@@ -24,12 +24,11 @@ const SignupPage = () => {
             if (response.ok) {
                 // Le serveur a renvoyé une réponse 200 OK
                 const data = await response.json();
-                console.log(data);
                 // Vérifier la valeur "influencer" dans la réponse du serveur
                 if (data.influencer) {
                     router.push('/create-clone');
                 } else {
-                    router.push('/feed');
+                    router.push('/get-all-clones');
                 }
             } else {
                 // Le serveur a renvoyé une erreur
@@ -44,7 +43,6 @@ const SignupPage = () => {
 
     const handleToggle = () => {
         setCheckboxChecked(!checkboxChecked);
-        console.log('Checkbox state:', checkboxChecked); // Log the state
     };
 
     return (

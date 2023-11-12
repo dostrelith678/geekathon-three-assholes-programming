@@ -26,7 +26,6 @@ const LoginPage = () => {
         if (response.ok) {
             // Le serveur a renvoyé une réponse 200 OK
             const data = await response.json();
-            console.log(data);
             // Vérifier la valeur "influencer" dans la réponse du serveur
             if (data.influencer) {
                 router.push('/create-clone');

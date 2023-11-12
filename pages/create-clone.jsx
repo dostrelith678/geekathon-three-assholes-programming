@@ -67,7 +67,7 @@ const clonePage = () => {
             return await convertImageToBase64(fileBlob);
           })
         );
-  
+
         setFile(base64Images[0]); // Mise à jour pour gérer la prévisualisation du premier fichier
         setFormData((prevFormData) => ({
           ...prevFormData,
@@ -96,7 +96,6 @@ const clonePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form data:', formData);
 
     try {
       // Convertir le tableau de selfies en tableau de base64
@@ -119,8 +118,7 @@ const clonePage = () => {
       if (response.ok) {
         // Le serveur a renvoyé une réponse 200 OK
         const data = await response.json();
-        console.log(data);
-        router.push('/thanks');
+        router.push('/get-all-clones'); // should be thank you page
       } else {
         // Le serveur a renvoyé une erreur
         const errorData = await response.json();
@@ -137,8 +135,8 @@ const clonePage = () => {
       <div className={styles['top-section']}><img className={styles.logo} src="doppelchat_1.png" alt="logo" /></div>
       <div className={styles['login-section']}>
         <form className={styles.form}>
-            <div className={styles.box}>
-              <div className={styles.fileInputContainer}>
+          <div className={styles.box}>
+            <div className={styles.fileInputContainer}>
               <label htmlFor="pp" className={styles.fileLabel}>
                 <div className={styles.filePreview}>
                   {file && <img src={file} alt="Preview" />}
@@ -153,9 +151,9 @@ const clonePage = () => {
               />
               <span>Choose a file</span>
             </div>
-            </div>
+          </div>
 
-            <div className={styles.box}>
+          <div className={styles.box}>
             <input
               className={styles.textarea}
               placeholder="Username"
@@ -165,7 +163,7 @@ const clonePage = () => {
               value={formData.username}
               onChange={handleChange}
             />
-            </div>
+          </div>
           {/*description*/}
           <div className={styles.box}>
             <textarea

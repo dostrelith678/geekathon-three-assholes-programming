@@ -12,14 +12,12 @@ const FeedPage = () => {
         // Fetch data from your backend
         const response = await fetch('http://localhost:3008/get-all-clones');
         if (!response.ok) {
-            throw new Error('Error fetching AI clones data');
+          throw new Error('Error fetching AI clones data');
         }
 
-        console.log("success")
 
         const data = await response.json();
         const allClonesData = data.allClonesData;
-        console.log(allClonesData)
         const userKeys = Object.keys(allClonesData);
 
         const users = Object.values(allClonesData || {}).map((user, index) => ({
@@ -27,7 +25,6 @@ const FeedPage = () => {
           ...user
         }));
 
-        console.log(userKeys)
         setUserList(users);
 
       } catch (error) {
@@ -37,7 +34,6 @@ const FeedPage = () => {
 
     fetchUsers();
   }, []); // Empty dependency array to run the effect only once
-  console.log('User List:', userList);
 
   const handleChatButtonClick = (userId) => {
     // Redirect to the chat page with the user ID as a parameter
