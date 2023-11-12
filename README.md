@@ -1,24 +1,46 @@
 # geekathon-three-assholes-programming
+# DoppelChat
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Description
+
+DoppelChat is an innovative platform designed for influencers to connect with their audience in a unique way. The application allows influencers to create personalized AI clones, known as "Doppels," which users can interact with through chat. One distinctive feature is the ability for Doppels to generate realistic selfies on user request, enhancing the immersive experience for both influencers and their followers.
+
+## Problem Statement
+
+In the competitive landscape of social media, followers often seek more authentic and personalized connections with their favorite influencers. Traditional forms of interaction may fall short in providing the depth of engagement users desire. Additionally, influencers face challenges in managing individual responses to a large audience.
+
+## Solution
+DoppelChat addresses these challenges by enabling influencers to create AI clones that not only emulate their personalities but also have the capability to generate realistic selfies. This feature adds a personal touch to the interaction, making it more visually engaging for users. Users can select from a list of Doppels, each with the ability to create unique and personalized selfies on request.
+
+### Key Features
+ - AI Clones Creation: Influencers can effortlessly create AI clones by providing input data such as text samples, communication patterns, and preferences.
+
+ - Interactive Chat: Users can choose from a list of available Doppels and engage in dynamic and personalized conversations with their favorite influencers' virtual counterparts.
+
+
+ - Selfie Generation: Doppels have the ability to generate realistic selfies on user request, adding a visual and personal element to the interaction.
+
+ - Customization: Influencers can customize the behavior, traits, and appearance of their Doppels to ensure an authentic and unique virtual representation.
+
+ - Real-time Updates: Doppels are continuously updated to reflect influencers' current styles, ensuring that users always have a relevant and up-to-date experience.
+
+- Audience Analytics: Influencers can gain insights into user interactions, helping them understand their audience better and tailor content accordingly.
+
 ## Getting Started
 
-First, run the development server:
+There are two components of this project, the frontend NextJS app located in the root directory and the backend NodeJS app located in `/backend`. To start the application, create a `/backend/.env` file based on the `/backend/.env.example` file. Then, start the backend server with:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+`npm run start` (from the `/backend` directory)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To start the frontend app, run:
+`npm run dev` (from root directory)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The backend API runs on port 3008 and the frontend on 3000 by default.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can navigate to page `localhost:3000/signup` to start.
+
 
 ## Learn More
 
@@ -29,8 +51,3 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
