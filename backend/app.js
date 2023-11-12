@@ -73,7 +73,7 @@ const getCloneSystemPrompt = async (cloneId) => {
     // Combine all prompts to form the complete system prompt
     const completePrompt = `${generalPrompt} ${systemPrompt} ${personalityPrompt} ${backgroundPrompt} ${workPrompt} ${relationshipPrompt} ${interestPrompt} ${childhoodPrompt}`;
 
-    return { cloneUsername: cloneData.username, cloneFirstName: cloneData.firstname, clonePrompt: completePrompt.trim() } // Trim to remove leading/trailing spaces
+    return { clonePp: cloneData.pp, cloneUsername: cloneData.username, cloneFirstName: cloneData.firstname, clonePrompt: completePrompt.trim() } // Trim to remove leading/trailing spaces
 }
 
 // Routes
@@ -208,7 +208,7 @@ app.post('/get-chat-response', async (req, res) => {
         const shouldSendSelfie = userMessage.includes('selfie')
 
         // Get a pre-prepared prompt from the clone data to enrich the response
-        const { cloneUsername, cloneFirstName, clonePrompt } = await getCloneSystemPrompt(cloneId);
+        const { clonePp, cloneUsername, cloneFirstName, clonePrompt } = await getCloneSystemPrompt(cloneId);
 
         if (shouldSendSelfie) {
             const selfiePrompt = userMessage.split('selfie')[1].trim()
@@ -221,6 +221,7 @@ app.post('/get-chat-response', async (req, res) => {
             } else {
                 return res.status(200).json({ cloneUsername, cloneFirstName, generatedResponse: { role: "assistant", message: "No, I can't send you a selfie right now!" } })
             }
+
             const selfieRequestBody =
             {
                 "key": process.env.STABLE_DIFFUSION_API_KEY,
@@ -242,7 +243,7 @@ app.post('/get-chat-response', async (req, res) => {
             try {
                 const response = await axios.post(process.env.SELFIE_GENERATOR_URL, selfieRequestBody);
 
-                return res.status(200).json({ cloneUsername, cloneFirstName, generatedResponse: { role: "assistant", content: response.data.output[0] } })
+                return res.status(200).json({ clonePp, cloneUsername, cloneFirstName, generatedResponse: { role: "assistant", content: response.data.output[0] } })
             } catch (error) {
                 console.error('Error:', error.message);
             }
@@ -260,7 +261,7 @@ app.post('/get-chat-response', async (req, res) => {
             const generatedResponse = chatCompletion.choices[0].message;
 
             // Return the generated response to the client
-            return res.status(200).json({ cloneUsername, cloneFirstName, generatedResponse });
+            return res.status(200).json({ clonePp, cloneUsername, cloneFirstName, generatedResponse });
         }
     } catch (error) {
         console.error('Error getting chat response:', error);
