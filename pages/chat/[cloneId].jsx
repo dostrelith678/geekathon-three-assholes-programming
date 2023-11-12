@@ -18,7 +18,7 @@ const SmsChat = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userMessage, cloneId: cloneId }), // Remplacez 'yourCloneIdHere' par l'ID réel du clone
+      body: JSON.stringify({ userMessage, cloneId: cloneId, chatHistory }), // Remplacez 'yourCloneIdHere' par l'ID réel du clone
     });
 
     if (response.ok) {
