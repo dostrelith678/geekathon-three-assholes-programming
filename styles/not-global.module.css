@@ -63,11 +63,13 @@
 .top-section {
   text-align: center;
   background-color: black;
+  padding: 40px;
 }
 
 .top-section h1 {
   font-weight: 900;
   color: rgba(133, 44, 207, 1);
+
 }
 
 .login-section {

@@ -71,8 +71,7 @@ const clonePage = () => {
     return (
         <div className={styles.App}>
             <div className={styles['top-section']}>
-                <img src="/dobble-chat_2.png" alt="Ícone" className={styles.icon} />
-                <h1 className={styles.title}>DOPPELCHAT</h1>
+                <img src="/doppelchat.png" />
             </div>
             <div className={styles['profile-info']}>
                 <img
