@@ -201,7 +201,7 @@ input:checked + .slider::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  background-color: grey;
   height: auto;
 }
 
@@ -219,9 +219,65 @@ input:checked + .slider::before {
 
 /* Top Section 2 */
 .top-section2 {
+  font-weight: 900;
   text-align: center;
   background-color: rgba(133, 44, 207, 1);
+  line-height: 0.5;
   color: black;
-  font-weight: 900;
   height: 10vh;
+}
+
+/* ... Your existing styles ... */
+
+/* New class for the image and feed */
+.image-feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Additional styling for individual profile cards in the feed */
+.profile-card {
+  text-align: center;
+  color: white;
+  border: 2px solid rgba(133, 44, 207, 1);
+  border-radius: 6px;
+  max-height: 500px;
+  max-width: 200px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+/* Styling for the profile image in portrait mode */
+.profile-image-portrait {
+  width: 80%;
+  height: auto;
+  border-radius: 20%;
+}
+
+.profile-description {
+  font-size: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-username {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Styling for the chat button */
+.chat-button {
+  background-color: rgba(133, 44, 207, 1); /* Green background color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.montserrat-font {
+  font-family: 'Montserrat', sans-serif;
 }

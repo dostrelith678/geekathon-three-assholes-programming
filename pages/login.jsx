@@ -34,15 +34,12 @@ const LoginPage = () => {
                 router.push('/get-all-clones');
             }
         } else {
-            // Le serveur a renvoyé une erreur
             const errorData = await response.json();
             console.error('Erreur de connexion:', errorData.error);
-            // Gérez l'erreur de connexion ici (affichez un message d'erreur, etc.).
         }
     };
 
     const handleSignUpClick = () => {
-        // redirigez l'utilisateur vers la page souhaitée
         router.push('/signup');
     };
 
